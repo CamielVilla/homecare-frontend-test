@@ -1,0 +1,10 @@
+.tile {
+    border-color: palevioletred;
+    border-style: groove;
+    flex-basis: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #188097;
+}

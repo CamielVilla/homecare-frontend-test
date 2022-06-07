@@ -19,6 +19,7 @@ function App() {
                 <li><a href="/">Contact</a> </li>
             </Nav>
             <Header />
+            <div className="tile-container">
             <Tile
                 image={person}
                 title="inloggen"
@@ -30,7 +31,7 @@ function App() {
                 text="neemt contact op via het contactformulier"
             >naar het contactformulier </Tile>
         </div>
-
+        </div>
 
     </header>
 
