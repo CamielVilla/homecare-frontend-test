@@ -1,38 +1,55 @@
-.App {
-  text-align: center;
+/*@import 'assets/fonts/Fonts.css';*/
+
+/*!*------1. global styles -------*!*/
+
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Julius Sans One', sans-serif, Arial;
+    font-weight: lighter;
+}
+/*------2. typography -------*/
+
+/*!*------3. Layout -------*!*/
+
+/*!*------4. areas -------*!*/
+
+
+.header{
+    background-image: linear-gradient(to right, #29A4B0, #bcf4ff);
+    border-color: gold;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header-container {
+    border-color: pink;
+    border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 1;
+    align-items: center;
+    flex-basis: 1200px;
+    vertical-align: middle;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.nav-container {
+    border-color: palevioletred;
+    border-style: groove;
+    align-items: flex-end;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.slogan{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
+    /*align-items:  center;*/
+    align-self: flex-start;
+    border-color: black;
+    border-style: groove;
 }
