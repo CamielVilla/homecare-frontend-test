@@ -4,7 +4,7 @@ import './Nav.css';
 function Nav ({children}) {
     return (
 
-        <nav>
+        <nav className="nav">
             <ul>
                 {children}
             </ul>
