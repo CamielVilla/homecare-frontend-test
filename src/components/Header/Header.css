@@ -1,0 +1,27 @@
+.slogan {
+    margin-top: 150px;
+    align-self: flex-start;
+    border-color: black;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.text-container {
+    border-style: groove;
+    flex-basis: 40px;
+    text-align: center;
+}
+.header h1{
+    color: #344C5B;
+    font-size: 73px;
+}
+
+.header h2{
+    font-size: 41px;
+    color: white;
+}

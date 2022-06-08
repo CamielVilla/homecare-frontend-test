@@ -1,24 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import Nav from "./components/Nav/Nav";
+import Header from "./components/Header/Header";
+import envelope from './assets/symbols/envelope.png';
+import person from './assets/symbols/person.png';
+import nurse from './assets/symbols/nurse.png';
+import Tile from "./components/Tile/Tile";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <>
+    <header className="header">
+        <div className="header-container">
+            <Nav>
+                <li><a href="/">Home</a> </li>
+                <li><a href="/">Log in</a> </li>
+                <li><a href="/">Contact</a> </li>
+            </Nav>
+            <Header />
+            <div className="tile-container">
+            <Tile
+                image={person}
+                title="inloggen"
+                text="log in bij uw Homecare account"
+            >inloggen </Tile>
+            <Tile
+                image={envelope}
+                title="contact"
+                text="neemt contact op via het contactformulier"
+            >naar het contactformulier </Tile>
+        </div>
+        </div>
+        <img src={nurse} className="nurse-image" />
+    </header>
+
+      </>
   );
 }
 
