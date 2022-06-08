@@ -7,7 +7,7 @@ function Tile ({image, children, title, text}) {
     return(
 
             <div className={title}>
-                <img src={image}/>
+                <img alt={title} src={image}/>
                 <h3>{title}</h3>
                 <p>{text}</p>
                 <Button onClick="" buttonType="button">
