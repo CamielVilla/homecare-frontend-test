@@ -1,12 +1,14 @@
 import React from "react";
 import './Button.css'
+import {useHistory} from "react-router-dom";
 
-function Button ({buttonType, onClick, children}){
+function Button ({buttonType, handleClick, children}){
+
     return (
         <button
             className="button"
             type={buttonType}
-            onClick={onClick}
+            onClick={handleClick}
         >
             {children}
         </button>

@@ -1,0 +1,22 @@
+.login-form-container, .contact-form-container {
+    margin-top: 200px;
+    border-color: black;
+    border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    text-align: center;
+}
+input{
+    background-color: white;
+    padding: 10px 5px;
+    margin: 10px;
+    width: 80%;
+}
+
+
+.login-page button {
+
+}

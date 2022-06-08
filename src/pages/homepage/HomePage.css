@@ -1,0 +1,17 @@
+
+.slogan{
+    align-self: flex-start;
+    border-color: black;
+    border-style: groove;
+}
+
+
+.tile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 150px;
+    border-style: groove;
+    border-color: yellow;
+    z-index: 1;
+}

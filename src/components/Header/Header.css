@@ -5,7 +5,7 @@
     border-style: groove;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
 
@@ -13,15 +13,15 @@
 
 .text-container {
     border-style: groove;
-    flex-basis: 40px;
+    flex-basis: 400px;
     text-align: center;
 }
-.header h1{
+.homepage h1{
     color: #344C5B;
     font-size: 73px;
 }
 
-.header h2{
+.homepage h2{
     font-size: 41px;
     color: white;
 }
