@@ -3,14 +3,13 @@ import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import envelope from './assets/symbols/envelope.png';
 import person from './assets/symbols/person.png';
-import Button from "./components/Button/Button";
+import nurse from './assets/symbols/nurse.png';
 import Tile from "./components/Tile/Tile";
 
 
 function App() {
   return (
       <>
-
     <header className="header">
         <div className="header-container">
             <Nav>
@@ -32,7 +31,7 @@ function App() {
             >naar het contactformulier </Tile>
         </div>
         </div>
-
+        <img src={nurse} className="nurse-image" />
     </header>
 
       </>

@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 function Tile ({image, children, title, text}) {
     return(
 
-            <div className="tile">
+            <div className={title}>
                 <img src={image}/>
                 <h3>{title}</h3>
                 <p>{text}</p>
