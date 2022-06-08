@@ -4,10 +4,7 @@ import Header from "../../components/Header/Header";
 import Tile from "../../components/Tile/Tile";
 import person from "../../assets/symbols/person.png";
 import envelope from "../../assets/symbols/envelope.png";
-import nurse from "../../assets/symbols/nurse.png";
-import tel from "../../assets/symbols/telephone.png"
-import Nav from "../../components/Nav/Nav";
-import {NavLink, useHistory} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import Button from "../../components/Button/Button";
 
 
@@ -23,14 +20,8 @@ function Homepage(){
     }
     return (
         <>
-        <Nav>
-            <li><NavLink to ="/" exact activeClassName="active-link">Home</NavLink> </li>
-            <li><NavLink to ="/login" exact activeClassName="active-link">Log in</NavLink> </li>
-            <li><NavLink to ="/" exact activeClassName="active-link">Contact</NavLink> </li>
-        </Nav>
-        <header className="header">
-            <div className="header-container">
-
+        <header className="homepage">
+            <div className="homepage-container">
                 <Header />
                 <div className="tile-container">
                     <Tile
@@ -55,7 +46,7 @@ function Homepage(){
                     {/*</Tile>*/}
                 </div>
             </div>
-            <img src={nurse} alt="nurse" className="nurse-image" />
+
         </header>
         </>
     )

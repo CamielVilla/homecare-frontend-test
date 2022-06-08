@@ -1,37 +1,10 @@
 
-.header{
-    border-color: gold;
-    border-style: groove;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
-    height: 1000px;
-}
-
-.header-container {
-    border-color: pink;
-    border-style: groove;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    flex-grow: 0;
-    flex-shrink: 1;
-    align-items: center;
-    flex-basis: 1200px;
-    height: 1000px;
-    vertical-align: middle;
-    margin-top: 0px;
-    position: relative;
-}
-
-
-
 .slogan{
     align-self: flex-start;
     border-color: black;
     border-style: groove;
 }
+
 
 .tile-container{
     display: flex;
@@ -42,4 +15,3 @@
     border-color: yellow;
     z-index: 1;
 }
-
