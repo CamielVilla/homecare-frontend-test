@@ -15,7 +15,6 @@
 .tile-container img{
     padding-bottom: 15px;
     height: 60px;
-
 }
 
 .tile-container h3{
@@ -32,10 +31,14 @@
 
 
 .inloggen {
-    background-color: rgba(24, 128, 151, 0.24);
+    background-color: rgba(24, 128, 151, 0.32);
 
 }
 
 .contact{
-    background-color: rgba(24, 128, 151, 0.53);
+    background-color: rgba(24, 128, 151, 0.63);
+}
+
+.contactgegevens{
+    background-color: rgba(24, 128, 151, 0.92);
 }

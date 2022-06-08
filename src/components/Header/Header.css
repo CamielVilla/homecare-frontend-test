@@ -5,7 +5,7 @@
     border-style: groove;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
 
@@ -13,7 +13,7 @@
 
 .text-container {
     border-style: groove;
-    flex-basis: 40px;
+    flex-basis: 400px;
     text-align: center;
 }
 .header h1{

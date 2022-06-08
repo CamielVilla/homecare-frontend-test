@@ -1,6 +1,19 @@
 .nav{
-    align-self: flex-end;
+   border-color: palevioletred;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
+
+.nav-container{
+    border-style: groove;
+    border-color: yellow;
+    flex-basis: 1200px;
+    justify-content: space-between;
+}
+
+
 
 ul{
     display: flex;
@@ -13,12 +26,21 @@ ul{
     margin-top: 20px;
 }
 
+a,
+a:visited,
+a:hover {
+    color: white;
+    text-decoration: none;
+    font-size: 23px;
+}
+
 .active-link {
     font-size: 23px;
     text-decoration: none;
     color: white;
+    border-bottom: 2px solid white;
 }
 
 li{
-
+color: white;
 }

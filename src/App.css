@@ -10,8 +10,16 @@
 }
 
 body{
-
+    background-image: linear-gradient(to right, #29A4B0, #bcf4ff);
 }
+
+.nurse-image{
+    z-index: 0;
+    position: fixed;
+    bottom: 0px;
+    right: 80px;
+}
+
 /*------2. typography -------*/
 
 /*!*------3. Layout -------*!*/

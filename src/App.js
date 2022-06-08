@@ -1,22 +1,23 @@
 import './App.css';
 import HomePage from "./pages/homepage/HomePage";
-import {BrowserRouter as Router,  Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
+import React from "react";
+import LogIn from "./pages/log-in/LogIn";
 
 
 
 function App() {
   return (
-      <Router>
-
+      <>
           <Switch>
               <Route exact path="/">
                   <HomePage />
               </Route>
-              <Route exact path="log-in">
-
+              <Route exact path="/login">
+                  <LogIn />
               </Route>
           </Switch>
-      </Router>
+      </>
   );
 }
 
