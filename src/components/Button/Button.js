@@ -5,7 +5,6 @@ import './Button.css'
 function Button ({buttonType, handleClick, children}){
 
     return (
-        <div className={buttonType}>
         <button
             className="button"
             type={buttonType}
@@ -13,7 +12,7 @@ function Button ({buttonType, handleClick, children}){
         >
             {children}
         </button>
-        </div>
+
     )
 }
 

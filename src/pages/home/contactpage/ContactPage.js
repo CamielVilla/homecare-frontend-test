@@ -3,9 +3,9 @@ import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
 
 function ContactPage (){
-    const { register } = useForm();
+    const { register, handleSubmit } = useForm();
 
-    function handleSubmit () {
+    function onFormSubmit() {
 
     }
 
@@ -13,7 +13,7 @@ function ContactPage (){
         <section className="contact-page">
             <div className="contact-container">
                 <div className="contact-form-container">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit(onFormSubmit)}>
                         <h2>Contactformulier</h2>
                         <label htmlFor="details-name">
                         <input
@@ -50,7 +50,6 @@ function ContactPage (){
                         </Button>
                         <Button
                             buttonType="submit"
-                            handleClick=""
                         >
                             verzend
                         </Button>

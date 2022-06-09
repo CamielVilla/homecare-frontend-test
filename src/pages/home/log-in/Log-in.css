@@ -28,6 +28,15 @@ input, textarea{
     flex-direction: row;
     justify-content: space-around;
 }
+.button-container-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.button-container-login button{
+    width: 107px;
+}
 
 .button-container button{
     width: 119px;

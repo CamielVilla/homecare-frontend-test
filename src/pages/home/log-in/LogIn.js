@@ -2,24 +2,25 @@ import React, {useState} from "react";
 import './Log-in.css';
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
+import {useHistory} from "react-router-dom";
 
 
 function LogIn () {
+    const { register, handleSubmit } = useForm();
+    const history = useHistory();
 
-function handleLogin(){
-    console.log("aaaaah doe het")
-}
 
 function onFormSubmit(e){
         e.preventDefault();
         console.log("submitted")
 }
 
-function log() {
-    console.log("submitted")
+
+function forgetPassword (){
+    history.push("/contact")
 }
+
     return (
-        <>
         <section className="login-page">
             <div className="login-container">
                 <div className="login-form-container">
@@ -27,29 +28,30 @@ function log() {
             <form onSubmit={onFormSubmit}>
                 <label htmlFor="login-email">
                     <input
-                    type="email"
-                    placeholder="email adres"
-                    name="email-adres"
-                    className="email-adres"
+                        id="login-email"
+                        type="email"
+                        placeholder="email adres"
+                        {...register("login-email-adres")}
+                        className="email-adres"
                     />
                 </label>
-                <label htmlFor="password">
-                <input
-                    type="text"
-                    placeholder="wachtwoord"
-                    name="password"
-                    className="password"
-                />
+                <label htmlFor="login-password">
+                    <input
+                        id="login-password"
+                        type="text"
+                        placeholder="wachtwoord"
+                        {...register("login-password")}
+                        className="password"
+                    />
                 </label>
-                <Button handleClick={handleLogin} buttonType="submit">Log in</Button>
+                <div className="button-container-login">
+                    <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
+                    <Button buttonType="submit">Log in</Button>
+                </div>
             </form>
                 </div>
-
             </div>
-
         </section>
-
-        </>
     )
 }
 
