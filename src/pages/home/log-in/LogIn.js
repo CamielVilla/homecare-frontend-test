@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import './Log-in.css';
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
@@ -6,14 +6,14 @@ import {useHistory} from "react-router-dom";
 
 
 function LogIn () {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
 
 
-function onFormSubmit(e){
-        e.preventDefault();
-        console.log("submitted")
+function onFormSubmit(data){
+console.log(errors)
 }
+
 
 
 function forgetPassword (){
@@ -24,25 +24,31 @@ function forgetPassword (){
         <section className="login-page">
             <div className="login-container">
                 <div className="login-form-container">
-                    <h2>Log hier in bij uw Homecare account</h2>
-            <form onSubmit={onFormSubmit}>
+            <form onSubmit={handleSubmit(onFormSubmit)}>
+                <h2>Log hier in bij uw Homecare account</h2>
                 <label htmlFor="login-email">
                     <input
                         id="login-email"
                         type="email"
                         placeholder="email adres"
-                        {...register("login-email-adres")}
+                        {...register("email", {
+                            required: "email is verplicht"
+                        })}
                         className="email-adres"
                     />
+                    {errors.email && <p>{errors.email.message}</p>}
                 </label>
                 <label htmlFor="login-password">
                     <input
                         id="login-password"
                         type="text"
                         placeholder="wachtwoord"
-                        {...register("login-password")}
+                        {...register("password", {
+                            required: "wachtwoord is verplicht"
+                        })}
                         className="password"
                     />
+                    {errors.password && <p>{errors.password.message}</p>}
                 </label>
                 <div className="button-container-login">
                     <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
