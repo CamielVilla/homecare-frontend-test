@@ -1,0 +1,43 @@
+.login-container{
+    border-style: groove;
+    border-color: white;
+}
+
+.login-form-container, .contact-form-container{
+    margin-top: 200px;
+    border-color: black;
+    border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    text-align: center;
+    z-index: 2;
+}
+
+input, textarea{
+    background-color: white;
+    padding: 10px 5px;
+    margin: 10px;
+    width: 80%;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.button-container-login{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.button-container-login button{
+    width: 107px;
+}
+
+.button-container button{
+    width: 119px;
+}

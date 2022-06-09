@@ -1,11 +1,11 @@
 import React from "react";
 import './HomePage.css';
-import Header from "../../components/Header/Header";
-import Tile from "../../components/Tile/Tile";
-import person from "../../assets/symbols/person.png";
-import envelope from "../../assets/symbols/envelope.png";
+import Header from "../../../components/Header/Header";
+import Tile from "../../../components/Tile/Tile";
+import person from "../../../assets/symbols/person.png";
+import envelope from "../../../assets/symbols/envelope.png";
 import {useHistory} from "react-router-dom";
-import Button from "../../components/Button/Button";
+import Button from "../../../components/Button/Button";
 
 
 function Homepage(){
@@ -38,15 +38,8 @@ function Homepage(){
                     ><Button  buttonType="button" handleClick={handleClickContact}>
                         Naar het contactformulier
                     </Button> </Tile>
-                    {/*<Tile*/}
-                    {/*    image={tel}*/}
-                    {/*    title="contactgegevens"*/}
-                    {/*    text="wij zijn bereikbaar op ma t/m vr van 09.00 tot 17.00 uur"*/}
-                    {/*><p>030 - 12345678</p>*/}
-                    {/*</Tile>*/}
                 </div>
             </div>
-
         </header>
         </>
     )

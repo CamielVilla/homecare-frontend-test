@@ -1,13 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 import './Nav.css';
+import {NavLink} from "react-router-dom";
 
-function Nav ({children}) {
+function Nav ({navItems}) {
+
     return (
-
         <nav className="nav">
             <div className="nav-container">
             <ul>
-                {children}
+                {navItems.map((nav) => {
+                    return<li key={nav}><NavLink to={nav} exact activeClassName="active-link">{nav}</NavLink></li>
+                })}
             </ul>
             </div>
         </nav>
