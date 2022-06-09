@@ -1,4 +1,9 @@
-.login-form-container, .contact-form-container {
+.login-container{
+    border-style: groove;
+    border-color: white;
+}
+
+.login-form-container, .contact-form-container{
     margin-top: 200px;
     border-color: black;
     border-style: groove;
@@ -8,15 +13,22 @@
     align-items: center;
     width: 400px;
     text-align: center;
+    z-index: 2;
 }
-input{
+
+input, textarea{
     background-color: white;
     padding: 10px 5px;
     margin: 10px;
     width: 80%;
 }
 
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
 
-.login-page button {
-
+.button-container button{
+    width: 119px;
 }

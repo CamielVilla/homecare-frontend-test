@@ -1,10 +1,11 @@
 import React from "react";
 import './Button.css'
-import {useHistory} from "react-router-dom";
+
 
 function Button ({buttonType, handleClick, children}){
 
     return (
+        <div className={buttonType}>
         <button
             className="button"
             type={buttonType}
@@ -12,6 +13,7 @@ function Button ({buttonType, handleClick, children}){
         >
             {children}
         </button>
+        </div>
     )
 }
 
