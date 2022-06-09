@@ -3,10 +3,9 @@ import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
 
 function ContactPage (){
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, formState: { errors} } = useForm();
 
-    function onFormSubmit() {
-
+    function onFormSubmit(data) {
     }
 
     return(
@@ -21,28 +20,46 @@ function ContactPage (){
                         placeholder="naam"
                         id="details-name"
                         className="name"
-                        {...register("name")}
+                        {...register("name",  {
+                            required: "Naam is verplicht",
+                            minLength: {
+                                value: 3,
+                                message: "Naam moet mininmaal 3 karakters bevatten"
+                            }
+                        })}
                         />
+                            {errors.name &&  <p>{errors.name.message}</p>}
                         </label>
                         <label htmlFor="details-email">
                         <input
                         type="email"
                         placeholder="email adres"
-                        {...register("email")}
+                        {...register("email", {
+                            required: "Email is verplicht"
+                        })}
                         className="contact-email-adres"
                         id="details-email"
                         />
+                            {errors.email &&  <p>{errors.email.message}</p>}
                         </label>
                         <label htmlFor="details-question">
                         <textarea
                             placeholder="stel hier uw vraag"
-                            {...register("question")}
+                            id="details-question"
+                            {...register("question", {
+                                required: "Vraag is verplicht",
+                                maxLength: {
+                                    value: 100,
+                                    message: "Vraag mag maximaal 100 karakters bevatten"
+                                }
+                            })}
                             className="question"
                             cols="42"
                             rows="8"
-                        ></textarea>
+                        />
+                            {errors.question &&  <p>{errors.question.message}</p>}
                         </label>
-                        <div className="button-container">
+                        <div className="button-container-contact">
                         <Button
                             buttonType="reset"
                         >

@@ -1,7 +1,7 @@
-.login-container{
-    border-style: groove;
-    border-color: white;
-}
+/*.login-container{*/
+/*    border-style: groove;*/
+/*    border-color: white;*/
+/*}*/
 
 .login-form-container, .contact-form-container{
     margin-top: 200px;
@@ -23,7 +23,7 @@ input, textarea{
     width: 80%;
 }
 
-.button-container{
+.button-container-contact{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -38,6 +38,6 @@ input, textarea{
     width: 107px;
 }
 
-.button-container button{
+.button-container-contact button{
     width: 119px;
 }
