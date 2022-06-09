@@ -3,7 +3,11 @@ import "./AdminNurses.css"
 
 function AdminNurses () {
     return (
-<p></p>
+        <section className="admin-nurses-page">
+            <div className="admin-nurses-container-container">
+                <h1>Verpleegkundigen overzicht</h1>
+            </div>
+        </section>
     )
 }
 export default AdminNurses;

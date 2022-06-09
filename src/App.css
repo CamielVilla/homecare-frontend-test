@@ -13,14 +13,16 @@ body{
     background-image: linear-gradient(to right, #29A4B0, #bcf4ff);
 }
 
-
-
 /*------2. typography -------*/
 
+h1 {
+    font-size: 41px;
+    color: white;
+}
 /*!*------3. Layout -------*!*/
 
 
-.homepage, .login-page,.contact-page {
+.homepage, .login-page, .contact-page, .admin-page ,.admin-nurses-page {
     border-color: gold;
     border-style: groove;
     display: flex;
@@ -31,7 +33,7 @@ body{
     color: white;
 }
 
-.homepage-container, .login-container, .contact-container{
+.homepage-container, .login-container, .contact-container, .admin-container .admin-nurses-container{
     border-color: pink;
     border-style: groove;
     display: flex;

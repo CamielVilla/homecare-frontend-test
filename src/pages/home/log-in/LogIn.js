@@ -11,7 +11,7 @@ function LogIn () {
 
 
 function onFormSubmit(data){
-console.log(errors)
+console.log(data)
 }
 
 

@@ -6,6 +6,7 @@ function ContactPage (){
     const { register, handleSubmit, formState: { errors} } = useForm();
 
     function onFormSubmit(data) {
+        console.log(data)
     }
 
     return(

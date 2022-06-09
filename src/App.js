@@ -7,14 +7,15 @@ import LogIn from "./pages/home/log-in/LogIn";
 import ContactPage from "./pages/home/contactpage/ContactPage";
 import nurse from "./assets/symbols/nurse.png";
 import AdminNurses from "./pages/Admin/adminnurses/AdminNurses";
+import AdminHome from "./pages/Admin/AdminHome/AdminHome";
 
 
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
   const [navItems, setNavItems] = useState(["home", "login", "contact"]);
-  const home = ["home", "login", "contact"]
-  const admin = ["zorgverleners", "patiënten", "berichten"]
+  const home = ["home", "login", "contact", "admin"]
+  const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
 
 useEffect( () => {
   setUrl(location.pathname)
@@ -32,6 +33,8 @@ useEffect(() => {
   setNavBarItems();
 },[url]);
 
+
+
   return (
       <>
         <Nav navItems={navItems}/>
@@ -45,11 +48,14 @@ useEffect(() => {
           <Route exact path="/contact">
             <ContactPage />
           </Route>
-          <Route exact={["/admin", "/admin/nurses"]}>
+          <Route exact path="/admin">
+            <AdminHome />
+          </Route>
+          <Route exact path="/zorgverleners">
             <AdminNurses />
           </Route>
         </Switch>
-        <img src={nurse} alt="nurse" className="nurse-image" />
+        {JSON.stringify(navItems) == JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
       </>
   );
 }
