@@ -21,8 +21,13 @@ h1 {
 }
 /*!*------3. Layout -------*!*/
 
+button{
+    background-color: #344C5B;
+    color: white;
+    font-size: 12px;
+}
 
-.homepage, .login-page, .contact-page, .admin-page , .overview-page {
+.homepage, .contact-page, .admin-page , .overview-page, .login-page, .contact-page {
     border-color: gold;
     border-style: groove;
     display: flex;
@@ -33,7 +38,7 @@ h1 {
     color: white;
 }
 
-.homepage-container, .login-container, .contact-container, .overview-container {
+.homepage-container, .contact-container, .overview-container, .login-page-container, .contact-page-container{
     border-color: pink;
     border-style: groove;
     display: flex;
@@ -54,6 +59,7 @@ h1 {
     position: fixed;
     bottom: 0px;
     right: 80px;
+    z-index: -1;
 }
 
 /*!*------4. areas -------*!*/
