@@ -22,7 +22,7 @@ h1 {
 /*!*------3. Layout -------*!*/
 
 
-.homepage, .login-page, .contact-page, .admin-page , .admin-nurses-page {
+.homepage, .login-page, .contact-page, .admin-page , .overview-page {
     border-color: gold;
     border-style: groove;
     display: flex;
@@ -33,7 +33,7 @@ h1 {
     color: white;
 }
 
-.homepage-container, .login-container, .contact-container, .admin-nurses-container {
+.homepage-container, .login-container, .contact-container, .overview-container {
     border-color: pink;
     border-style: groove;
     display: flex;
@@ -47,6 +47,7 @@ h1 {
     vertical-align: middle;
     margin-top: 0px;
     position: relative;
+    /*z-index: 4;*/
 }
 
 .nurse-image{

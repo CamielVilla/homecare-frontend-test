@@ -6,9 +6,10 @@ import HomePage from "./pages/home/homepage/HomePage";
 import LogIn from "./pages/home/log-in/LogIn";
 import ContactPage from "./pages/home/contactpage/ContactPage";
 import nurse from "./assets/symbols/nurse.png";
-import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
 import AdminHome from "./pages/admin/adminhome/AdminHome";
 import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
+import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
+import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 
 
 function App() {
@@ -58,8 +59,11 @@ useEffect(() => {
           <Route exact path="/patiënten">
             <AdminPatients />
           </Route>
+          <Route exaxt path="/berichten">
+            <AdminMessages />
+          </Route>
         </Switch>
-        {JSON.stringify(navItems) == JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
+        {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
       </>
   );
 }

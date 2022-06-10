@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import './Nav.css';
 import {NavLink} from "react-router-dom";
 
-function Nav ({navItems, basePage}) {
+function Nav ({navItems}) {
 
     return (
         <nav className="nav">

@@ -1,12 +1,16 @@
 import React from "react";
 import "./AdminPatients.css";
-import Scrollbars from 'react-scrollbar'
+import OverviewPage from "../../overview/OverviewPage";
 
 
 function AdminPatients () {
 
     return (
-<p></p>
+        <div>
+            <OverviewPage
+                name="Patiënten overzicht"
+            />
+        </div>
     )
 }
 export default AdminPatients;
