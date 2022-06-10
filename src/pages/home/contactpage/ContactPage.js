@@ -1,78 +1,68 @@
 import "./ContactPage.css"
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
+import Form from "../../../components/Form/Form";
+import FormInput from "../../../components/Form/FormInput";
+import React from "react";
 
 function ContactPage (){
     const { register, handleSubmit, formState: { errors} } = useForm();
 
     function onFormSubmit(data) {
+        console.log(data)
     }
 
     return(
-        <section className="contact-page">
-            <div className="contact-container">
-                <div className="contact-form-container">
-                    <form onSubmit={handleSubmit(onFormSubmit)}>
-                        <h2>Contactformulier</h2>
-                        <label htmlFor="details-name">
-                        <input
-                        type="text"
-                        placeholder="naam"
-                        id="details-name"
-                        className="name"
-                        {...register("name",  {
-                            required: "Naam is verplicht",
-                            minLength: {
-                                value: 3,
-                                message: "Naam moet mininmaal 3 karakters bevatten"
-                            }
-                        })}
-                        />
-                            {errors.name &&  <p>{errors.name.message}</p>}
-                        </label>
-                        <label htmlFor="details-email">
-                        <input
-                        type="email"
-                        placeholder="email adres"
-                        {...register("email", {
-                            required: "Email is verplicht"
-                        })}
-                        className="contact-email-adres"
-                        id="details-email"
-                        />
-                            {errors.email &&  <p>{errors.email.message}</p>}
-                        </label>
-                        <label htmlFor="details-question">
-                        <textarea
-                            placeholder="stel hier uw vraag"
-                            id="details-question"
-                            {...register("question", {
-                                required: "Vraag is verplicht",
-                                maxLength: {
-                                    value: 100,
-                                    message: "Vraag mag maximaal 100 karakters bevatten"
-                                }
-                            })}
-                            className="question"
-                            cols="42"
-                            rows="8"
-                        />
-                            {errors.question &&  <p>{errors.question.message}</p>}
-                        </label>
-                        <div className="button-container-contact">
-                        <Button
-                            buttonType="reset"
-                        >
-                            Reset
-                        </Button>
-                        <Button
-                            buttonType="submit"
-                        >
-                            verzend
-                        </Button>
-                        </div>
-                    </form>
 
+        <section className="contact-page">
+            <div className="contact-page-container">
+                <div className="form-container">
+                    <Form
+                        handleSubmit={handleSubmit(onFormSubmit)}
+                        title="Stel hier uw vraag"
+                    >
+                        <FormInput
+                            htmlFor="contact-name"
+                            type="text"
+                            placeholder="Naam"
+                            fieldName="contactName"
+                            register={register}
+                            errors={errors}
+                            minimLength={3}
+                            maximLength={100}
+                            isRequired={true}
+                        />
+                        <FormInput
+                            htmlFor="contact-email"
+                            type="email"
+                            placeholder="email adres"
+                            fieldName="contactEmail"
+                            register={register}
+                            errors={errors}
+                            minimLength={3}
+                            maximLength={100}
+                            isRequired={true}
+                        />
+                        <label htmlFor="contact-question">
+                             <textarea
+                                cols="40"
+                                rows="10"
+                                placeholder="vraag"
+                                id="contact-question"
+                                {...register("textarea", {
+                                    required: "veld is verplicht"
+                                })}
+                             />
+                            <p> {
+                                errors.textarea && errors.textarea.message
+                            } </p>
+                        </label>
+
+                        <div className="button-container-login">
+                            <Button buttonType="reset">Reset</Button>
+                            <Button buttonType="submit">Verzend</Button>
+                        </div>
+                    </Form>
                 </div>
             </div>
         </section>

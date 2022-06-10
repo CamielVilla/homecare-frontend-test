@@ -3,7 +3,7 @@
 /*    border-color: white;*/
 /*}*/
 
-.login-form-container, .contact-form-container{
+.form-inner-container, .contact-form-container{
     margin-top: 200px;
     border-color: black;
     border-style: groove;
@@ -29,9 +29,13 @@ input, textarea{
     justify-content: space-around;
 }
 .button-container-login{
+    border-style: groove;
+    border-color: #344C5B;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 300px;
 }
 
 .button-container-login button{

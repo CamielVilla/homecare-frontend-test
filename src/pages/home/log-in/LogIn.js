@@ -3,17 +3,22 @@ import './Log-in.css';
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
+import Form from "../../../components/Form/Form";
+import FormInput from "../../../components/Form/FormInput";
 
 
 function LogIn () {
+
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
 
 
 function onFormSubmit(data){
-console.log(errors)
+console.log(data)
 }
 
+function handleLogin (){
+}
 
 
 function forgetPassword (){
@@ -22,43 +27,44 @@ function forgetPassword (){
 
     return (
         <section className="login-page">
-            <div className="login-container">
-                <div className="login-form-container">
-            <form onSubmit={handleSubmit(onFormSubmit)}>
-                <h2>Log hier in bij uw Homecare account</h2>
-                <label htmlFor="login-email">
-                    <input
-                        id="login-email"
-                        type="email"
-                        placeholder="email adres"
-                        {...register("email", {
-                            required: "email is verplicht"
-                        })}
-                        className="email-adres"
-                    />
-                    {errors.email && <p>{errors.email.message}</p>}
-                </label>
-                <label htmlFor="login-password">
-                    <input
-                        id="login-password"
-                        type="text"
-                        placeholder="wachtwoord"
-                        {...register("password", {
-                            required: "wachtwoord is verplicht"
-                        })}
-                        className="password"
-                    />
-                    {errors.password && <p>{errors.password.message}</p>}
-                </label>
+            <div className="login-page-container">
+            <Form
+                handleSubmit={handleSubmit(onFormSubmit)}
+                title="Log in met uw Homecare gegevens"
+            >
+                <FormInput
+                    htmlFor="login-email"
+                    type="email"
+                    placeholder="Email adres"z
+                    fieldName="loginEmail"
+                    register={register}
+                    errors={errors}
+                    minimLength={3}
+                    maximLength={100}
+                    isRequired={true}
+                />
+                <FormInput
+                htmlFor="login-password"
+                type="text"
+                placeholder="Wachtwoord"
+                fieldName="loginPassword"
+                register={register}
+                errors={errors}
+                minimLength={3}
+                maximLength={100}
+                isRequired={true}
+                />
                 <div className="button-container-login">
+
                     <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
                     <Button buttonType="submit">Log in</Button>
                 </div>
-            </form>
-                </div>
+            </Form>
+
             </div>
         </section>
     )
 }
 
 export default LogIn;
+

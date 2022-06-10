@@ -1,0 +1,18 @@
+.form-inner-container {
+    border-style: groove;
+    border-color: hotpink;
+
+}
+
+.form-children {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-color: #29A4B0;
+    border-style: groove;
+}
+
+input, textarea {
+    width: 300px;
+}

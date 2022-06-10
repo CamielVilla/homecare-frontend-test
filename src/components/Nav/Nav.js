@@ -9,7 +9,8 @@ function Nav ({navItems}) {
             <div className="nav-container">
             <ul>
                 {navItems.map((nav) => {
-                    return<li key={nav}><NavLink to={nav} exact activeClassName="active-link">{nav}</NavLink></li>
+                    return<li key={nav}><NavLink
+                        to={nav} exact activeClassName="active-link">{nav}</NavLink></li>
                 })}
             </ul>
             </div>
