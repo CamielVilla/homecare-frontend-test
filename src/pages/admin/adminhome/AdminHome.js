@@ -2,6 +2,7 @@ import React from "react";
 import "./AdminHome.css";
 
 
+
 function AdminHome(){
     return(
         <section className="admin-page">

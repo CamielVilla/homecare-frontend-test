@@ -6,14 +6,15 @@ import HomePage from "./pages/home/homepage/HomePage";
 import LogIn from "./pages/home/log-in/LogIn";
 import ContactPage from "./pages/home/contactpage/ContactPage";
 import nurse from "./assets/symbols/nurse.png";
-import AdminNurses from "./pages/Admin/adminnurses/AdminNurses";
-import AdminHome from "./pages/Admin/AdminHome/AdminHome";
+import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
+import AdminHome from "./pages/admin/adminhome/AdminHome";
+import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
 
 
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
-  const [navItems, setNavItems] = useState(["home", "login", "contact"]);
+  const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"]);
   const home = ["home", "login", "contact", "admin"]
   const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
 
@@ -53,6 +54,9 @@ useEffect(() => {
           </Route>
           <Route exact path="/zorgverleners">
             <AdminNurses />
+          </Route>
+          <Route exact path="/patiënten">
+            <AdminPatients />
           </Route>
         </Switch>
         {JSON.stringify(navItems) == JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
