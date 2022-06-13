@@ -1,9 +1,9 @@
 import React from "react";
 import "./AdminNurses.css"
-import OverviewPage from "../../overview/OverviewPage";
+import ScrollContent from "../../../components/scrollcontent/ScrollContent";
 import Form from "../../../components/Form/Form";
 import {useForm} from "react-hook-form";
-import FormInput from "../../../components/Form/FormInput";
+import TextInput from "../../../components/Form/TextInput";
 import Button from "../../../components/Button/Button";
 
 function AdminNurses() {
@@ -16,7 +16,7 @@ function AdminNurses() {
     return (
         <div className="admin-nurses-page">
             <div className="admin-nursers-container">
-        <OverviewPage
+        <ScrollContent
             name="Zorgverleners overzicht"
         >
             <div className="nurses-form-container">
@@ -24,7 +24,7 @@ function AdminNurses() {
                 handleSubmit={handleSubmit(onFormSubmit)}
                 title="voeg zorgverlener toe"
             >
-                <FormInput
+                <TextInput
                     htmlFor="nurse-name"
                     type="text"
                     placeholder="Naam"
@@ -35,7 +35,7 @@ function AdminNurses() {
                     maximLength={50}
                     isRequired={true}
                 />
-                <FormInput
+                <TextInput
                     htmlFor="nurse-email"
                     type="email"
                     placeholder="email adres"
@@ -46,7 +46,7 @@ function AdminNurses() {
                     maximLength={50}
                     isRequired={true}
                 />
-                <FormInput
+                <TextInput
                     htmlFor="nurse-password"
                     type="text"
                     placeholder="Wachtwoord"
@@ -57,7 +57,7 @@ function AdminNurses() {
                     maximLength={50}
                     isRequired={true}
                 />
-                <FormInput
+                <TextInput
                     htmlFor="nurse-big"
                     type="text"
                     placeholder="Big-nummer"
@@ -70,11 +70,11 @@ function AdminNurses() {
                 />
                 <div className="button-container-admin-nurses">
                     <Button buttonType="reset">Reset</Button>
-                    <Button buttonType="submit">Verzend</Button>
+                    <Button buttonType="submit">Voeg toe</Button>
                 </div>
             </Form>
             </div>
-        </OverviewPage>
+        </ScrollContent>
 
             </div>
         </div>

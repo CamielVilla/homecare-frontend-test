@@ -7,7 +7,7 @@
 {
 
 }
-.login-form-container, .contact-form-container{
+.login-form-container, .contact-form-container, .patient-form-container {
     margin-top: 200px;
     border-color: black;
     border-style: groove;
@@ -28,7 +28,8 @@ input, textarea{
 }
 
 
-.button-container-login, .button-container-contact, .button-container-admin-nurses{
+.button-container-login, .button-container-contact, .button-container-admin-nurses,
+.button-container-admin-patients{
     border-style: groove;
     border-color: #344C5B;
     display: flex;
@@ -36,12 +37,4 @@ input, textarea{
     justify-content: space-between;
     align-items: flex-start;
     width: 300px;
-}
-
-.button-container-login button{
-    width: 107px;
-}
-
-.button-container-contact button, .button-container-admin-nurses button{
-    width: 119px;
 }

@@ -10,14 +10,16 @@ import AdminHome from "./pages/admin/adminhome/AdminHome";
 import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
 import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
+import NursesHome from "./pages/nurses/nurseshome/NursesHome";
 
 
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
   const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"]);
-  const home = ["home", "login", "contact", "admin"]
+  const home = ["home", "login", "contact", "admin", "verpleegkundigen"]
   const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
+  const nurses= ["home", "profiel", "patiënten-overzicht"]
 
 useEffect( () => {
   setUrl(location.pathname)
@@ -30,6 +32,9 @@ useEffect(() => {
     }
     else if(location.pathname.includes("admin")){
       setNavItems(admin)
+    }
+    else if (location.pathname.includes("verpleegkundigen")){
+      setNavItems(nurses)
     }
   }
   setNavBarItems();
@@ -61,6 +66,9 @@ useEffect(() => {
           </Route>
           <Route exaxt path="/berichten">
             <AdminMessages />
+          </Route>
+          <Route exact path="/verpleegkundigen">
+            <NursesHome />
           </Route>
         </Switch>
         {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}

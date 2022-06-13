@@ -4,7 +4,7 @@ import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Form from "../../../components/Form/Form";
-import FormInput from "../../../components/Form/FormInput";
+import TextInput from "../../../components/Form/TextInput";
 
 
 function LogIn () {
@@ -33,7 +33,7 @@ function forgetPassword (){
                 handleSubmit={handleSubmit(onFormSubmit)}
                 title="Log in met uw Homecare gegevens"
             >
-                <FormInput
+                <TextInput
                     htmlFor="login-email"
                     type="email"
                     placeholder="Email adres"z
@@ -44,7 +44,7 @@ function forgetPassword (){
                     maximLength={100}
                     isRequired={true}
                 />
-                <FormInput
+                <TextInput
                 htmlFor="login-password"
                 type="text"
                 placeholder="Wachtwoord"
