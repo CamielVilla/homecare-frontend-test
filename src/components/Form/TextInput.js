@@ -1,6 +1,7 @@
 import React from "react";
 
-function FormInput ({isRequired, id, name,  rules, errors, register, fieldName, htmlFor, type, placeholder, minimLength, maximLength}) {
+function TextInput ({isRequired, errors, register, fieldName, htmlFor, type, placeholder, minimLength, maximLength})
+{
 
 
     return (
@@ -31,10 +32,9 @@ function FormInput ({isRequired, id, name,  rules, errors, register, fieldName, 
                 <p> {
                     errors[fieldName] && errors[fieldName].message
                 } </p>
-
              </label>
     )
 }
-export default FormInput;
+export default TextInput;
 
 

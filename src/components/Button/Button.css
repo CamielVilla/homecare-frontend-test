@@ -4,6 +4,12 @@
     color: white;
     font-size: 12px;
     height: 35px;
-    width: 214px;
+    width: 110px;
 }
+
+
+.tile-container button{
+    width: 200px;
+}
+
 

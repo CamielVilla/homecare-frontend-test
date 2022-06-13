@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
-import "./OverviewPage.css";
+import "./ScrollContent.css";
 import axios from "axios";
 import Scrollbars from 'react-scrollbar'
-import PersonTile from "../../components/persontile/PersonTile";
+import PersonTile from "../persontile/PersonTile";
 
-function OverviewPage ({name}) {
+function ScrollContent ({name, children}) {
     const scrollBarStyle = {
         border: '1px solid red',
         width: '500px',
@@ -29,14 +29,17 @@ useEffect( () => {
         <section className="overview-page">
             <div className="overview-container">
                 <h1>{name}</h1>
+                <div className="scroll-content-container">
                 <Scrollbars autoHide={false} style={scrollBarStyle} >
                     {person.results && person.results.map((person) => {
                         return <PersonTile name={person.name} />
                     })}
                 </Scrollbars>
+                </div>
+                {children}
             </div>
         </section>
 
     )
 }
-export default OverviewPage;
+export default ScrollContent;
