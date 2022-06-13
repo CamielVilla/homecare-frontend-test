@@ -1,0 +1,9 @@
+.table-container {
+    border-color: #bcf4ff;
+    border-style: groove;
+    height: 300px;
+}
+
+.table-container tr, .table-container th {
+padding: 10px;
+}

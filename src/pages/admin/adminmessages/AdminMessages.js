@@ -7,7 +7,7 @@ function AdminMessages (){
     const scrollBarStyle = {
         border: '1px solid red',
         width: '500px',
-        height: '800px'
+        height: '730px'
     };
     return (
 
