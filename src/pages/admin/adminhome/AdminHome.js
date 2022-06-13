@@ -1,16 +1,14 @@
 import React from "react";
 import "./AdminHome.css";
+import Page from "../../../components/Page/Page";
 
 
 
 function AdminHome(){
     return(
-        <section className="admin-page">
-            <div className="admin-container">
+            <Page>
                 <h1>Welkom admin</h1>
-            </div>
-        </section>
-
+            </Page>
     )
 }
 

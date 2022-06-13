@@ -6,6 +6,7 @@ import person from "../../../assets/symbols/person.png";
 import envelope from "../../../assets/symbols/envelope.png";
 import {useHistory} from "react-router-dom";
 import Button from "../../../components/Button/Button";
+import Page from "../../../components/Page/Page";
 
 
 function Homepage(){
@@ -20,7 +21,7 @@ function Homepage(){
     }
     return (
         <>
-        <header className="homepage">
+            <header className="homepage">
             <div className="homepage-container">
                 <Header />
                 <div className="tile-container">

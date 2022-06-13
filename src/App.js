@@ -11,6 +11,7 @@ import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
 import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 import NursesHome from "./pages/nurses/nurseshome/NursesHome";
+import NursesPatientFiles from "./pages/nurses/nursespatientfiles/NursesPatientFiles";
 
 
 function App() {
@@ -46,7 +47,7 @@ useEffect(() => {
       <>
         <Nav navItems={navItems}/>
         <Switch>
-          <Route exact path={["/", "/home"]}>
+          <Route exact path={["", "/", "/home"]}>
             <HomePage />
           </Route>
           <Route exact path="/login">
@@ -67,11 +68,15 @@ useEffect(() => {
           <Route exaxt path="/berichten">
             <AdminMessages />
           </Route>
-          <Route exact path="/verpleegkundigen">
+          <Route exact path={["/verpleegkundigen", "/profiel"]}>
             <NursesHome />
+          </Route>
+          <Route exact path="/patiënten-overzicht">
+            <NursesPatientFiles />
           </Route>
         </Switch>
         {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
+        {location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}
       </>
   );
 }

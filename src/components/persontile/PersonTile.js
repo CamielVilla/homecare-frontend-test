@@ -1,13 +1,17 @@
 import React from "react";
 import "./PersonTile.css"
 
+import {NavLink} from "react-router-dom";
 
-function PersonTile ({name}){
+
+function PersonTile ({name, id}){
     return (
         <div className= "person-tile-container">
             <div className="person-tile">
-                <h2>{name}</h2>
-                <h2>{name + "@homecare.nl"}</h2>
+                <h3><NavLink to="" exact activeClassName="active-person-link">
+                    {name}</NavLink></h3>
+                <h3><NavLink to="" exact activeClassName="active-person-link">
+                    {id}</NavLink></h3>
             </div>
         </div>
     )

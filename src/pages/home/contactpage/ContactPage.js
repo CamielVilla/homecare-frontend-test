@@ -5,6 +5,7 @@ import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
 import React from "react";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
+import Page from "../../../components/Page/Page";
 
 function ContactPage (){
     const { register, handleSubmit, formState: { errors} } = useForm();
@@ -15,8 +16,7 @@ function ContactPage (){
 
     return(
 
-        <section className="contact-page">
-            <div className="contact-page-container">
+        <Page>
                 <div className="contact-form-container">
                     <Form
                         handleSubmit={handleSubmit(onFormSubmit)}
@@ -62,8 +62,7 @@ function ContactPage (){
                         </div>
                     </Form>
                 </div>
-            </div>
-        </section>
+        </Page>
     )
 }
 export default ContactPage;
