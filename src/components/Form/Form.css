@@ -1,6 +1,12 @@
-.form-inner-container {
+
+
+.form-container{
+    border-color: yellow;
     border-style: groove;
-    border-color: hotpink;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
 
 }
 
@@ -9,8 +15,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-color: #29A4B0;
     border-style: groove;
+    border-color: red;
 }
 
 input, textarea {

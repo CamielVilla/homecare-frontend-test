@@ -28,6 +28,7 @@ function forgetPassword (){
     return (
         <section className="login-page">
             <div className="login-page-container">
+                <div className="login-form-container">
             <Form
                 handleSubmit={handleSubmit(onFormSubmit)}
                 title="Log in met uw Homecare gegevens"
@@ -60,7 +61,7 @@ function forgetPassword (){
                     <Button buttonType="submit">Log in</Button>
                 </div>
             </Form>
-
+                </div>
             </div>
         </section>
     )

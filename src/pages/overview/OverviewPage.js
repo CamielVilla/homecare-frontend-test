@@ -4,7 +4,7 @@ import axios from "axios";
 import Scrollbars from 'react-scrollbar'
 import PersonTile from "../../components/persontile/PersonTile";
 
-function OverviewPage ({name}) {
+function OverviewPage ({name, children}) {
     const scrollBarStyle = {
         border: '1px solid red',
         width: '500px',
@@ -34,6 +34,7 @@ useEffect( () => {
                         return <PersonTile name={person.name} />
                     })}
                 </Scrollbars>
+                {children}
             </div>
         </section>
 

@@ -16,7 +16,7 @@ function ContactPage (){
 
         <section className="contact-page">
             <div className="contact-page-container">
-                <div className="form-container">
+                <div className="contact-form-container">
                     <Form
                         handleSubmit={handleSubmit(onFormSubmit)}
                         title="Stel hier uw vraag"
@@ -29,7 +29,7 @@ function ContactPage (){
                             register={register}
                             errors={errors}
                             minimLength={3}
-                            maximLength={100}
+                            maximLength={50}
                             isRequired={true}
                         />
                         <FormInput
@@ -40,7 +40,7 @@ function ContactPage (){
                             register={register}
                             errors={errors}
                             minimLength={3}
-                            maximLength={100}
+                            maximLength={50}
                             isRequired={true}
                         />
                         <label htmlFor="contact-question">

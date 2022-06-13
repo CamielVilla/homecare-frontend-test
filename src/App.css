@@ -27,18 +27,20 @@ button{
     font-size: 12px;
 }
 
-.homepage, .contact-page, .admin-page , .overview-page, .login-page, .contact-page {
+.homepage, .contact-page, .admin-page , .overview-page, .login-page, .contact-page,
+.admin-nurses-page, .admin-patients-page  {
     border-color: gold;
     border-style: groove;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    height: 1000px;
+    height: 1200px;
     color: white;
 }
 
-.homepage-container, .contact-container, .overview-container, .login-page-container, .contact-page-container{
+.homepage-container, .contact-container,  .contact-page-container,
+.login-page-container, .overview-container{
     border-color: pink;
     border-style: groove;
     display: flex;
@@ -46,7 +48,7 @@ button{
     justify-content: flex-start;
     flex-grow: 0;
     flex-shrink: 1;
-    align-items: center;
+    align-items:center;
     flex-basis: 1200px;
     height: 1000px;
     vertical-align: middle;
@@ -54,6 +56,9 @@ button{
     position: relative;
     /*z-index: 4;*/
 }
+
+
+
 
 .nurse-image{
     position: fixed;
