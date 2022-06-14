@@ -51,24 +51,6 @@ useEffect(() => {
   setNavBarItems();
 },[url]);
 
-  const patientData = [{
-    wondName: "Schaafwond",
-    location: "Linker knie",
-    date: "15-15-1970"
-
-  }]
-  const columns = useMemo(
-      () => [{
-        Header: "Wond",
-        accessor: "wondName"
-      },{
-        Header: "Locatie",
-        accessor: "location"
-      },{
-        Header: "Datum",
-        accessor: "date"
-      }
-      ])
 
 
   return (
@@ -102,7 +84,7 @@ useEffect(() => {
           <Route exact path="/patiënten-overzicht">
             <NursesPatientFiles />
           </Route>
-          <Route path="/patiënten/:id" children={<PatientFile />} />
+          <Route path="/:id" children={<PatientFile />} />
         </Switch>
         {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
         {location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}

@@ -28,7 +28,7 @@ useEffect( () => {
                 <div className="scroll-content-container">
                 <Scrollbars autoHide={false} style={scrollBarStyle} >
                     {person.results && person.results.map((person) => {
-                        return <PersonTile name={person.name} id="111" />
+                        return  <PersonTile key={person.name} name={person.name} id="111" />
                     })}
                 </Scrollbars>
                 </div>

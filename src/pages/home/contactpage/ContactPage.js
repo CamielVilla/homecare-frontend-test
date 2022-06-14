@@ -1,6 +1,6 @@
 import "./ContactPage.css"
 import Button from "../../../components/Button/Button";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
 import React from "react";

@@ -1,19 +1,20 @@
 import React from "react";
+import "./Table.css"
 
 
-function Table ({name, location, date, children}){
+function Table ({children, className}){
 
     return(
 <div>
-    <table>
+    <table className={className}>
         <tr>
             <th>Naam wond</th>
             <th>Locatie</th>
             <th>Datum</th>
+            <th>Foto</th>
+            <th>Beoordeling</th>
         </tr>
-        <tr>
             {children}
-        </tr>
     </table>
 
 </div>
