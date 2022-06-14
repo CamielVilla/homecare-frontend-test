@@ -15,7 +15,8 @@ import {render} from "react-dom";
 
 
 function PatientFile(){
-
+const [, updateState] = useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
     const woundsData = [
         {
             examined: false,
@@ -28,22 +29,32 @@ function PatientFile(){
     }
         ,
         {
+                examined: false,
                 woundId: 1,
                 name: "Schaafwond",
                 location: "Rechter knie",
                 date: "16-15-2022",
                 image: <img src={woundTwo}/>,
-                examined: false,
                 examinationId: 2
             }
         ];
 
-    const [examined, setExamined] = useState(false)
     const [wounds, setWounds] = useState(woundsData)
 
-function onFormSubmit(data) {
-console.log(data)
+
+const click = index => e => {
+    let newArr = [...wounds]; // copying the old datas array
+    newArr[index].examined = true;
+    setWounds(newArr)
+    console.log(newArr)
+        forceUpdate();
+    }
+
+function onFormSubmit () {
+
 }
+
+
 
 
     return(
@@ -57,22 +68,26 @@ console.log(data)
             </div>
             <div className="table-container">
             <Table className="photo-table">
-                    {wounds.map((wound) => {
+                {
+                    woundsData.map((wound, index) => {
                        return <tr key={wound.examinationId}>
                                 <td>{wound.name}</td>
                                 <td>{wound.location}</td>
                                 <td>{wound.date}</td>
                                 <td>{wound.image}</td>
                                 <td>
-                                    <WoundExamination
-                                        name={wound.woundId}
+                                    {!wound.examined
+                                        ?<WoundExamination
+                                            handleClick={click(index)}
+                                        className="examine-container"
+                                        name={wound.examinationId}
                                         date={wound.date}
                                         onFormSubmit={onFormSubmit}
                                         placeHolder={"Beoordeel wond"}/>
+                                        :<p>bem</p>}
                                 </td>
                        </tr>
                     })}
-
             </Table>
 
             </div>
@@ -80,6 +95,7 @@ console.log(data)
         <h2>Behandplan</h2>
         <p>tweemaal daags spoelen</p>
     </div>
+
 </Page>
 
     )

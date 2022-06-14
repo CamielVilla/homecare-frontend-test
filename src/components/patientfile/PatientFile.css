@@ -18,14 +18,16 @@
 }
 
 
-.patient-info-container{
-
+.examine-container{
 }
 
 .patient-wound-container button {
     width: 200px;
 }
 
+.examine-container{
+
+}
  input {
     border-color: red;
     border-style: groove;
