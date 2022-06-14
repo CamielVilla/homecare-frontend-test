@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./PatientFile.css";
 import Page from "../Page/Page";
 import Table from "../table/Table";
@@ -10,40 +10,40 @@ import Form from "../Form/Form";
 import TextAreaInput from "../Form/TextAreaInput";
 import { useForm } from "react-hook-form";
 import WoundExamination from "../woundExamination/WoundExamination";
+import {upload} from "@testing-library/user-event/dist/upload";
+import {render} from "react-dom";
 
 
 function PatientFile(){
 
-    const [isExamined, setIsExamined] = useState(false);
-//
-// let isExamined = false;
-// function handleClick(){
-//     isExamined = true
-// }
-
-    function onFormSubmit(data){
-        console.log(data)
-        setIsExamined(true)
-    }
-
-    const woundData = [
-       {
-        name: "Schaafwond",
-        location: "Linker knie",
-        date: "15-15-2022",
-        image: <img src={woundOne}/>,
-        examined: ""
-        },
-      {
+    const woundsData = [
+        {
+            examined: false,
+            woundId: 1,
             name: "Schaafwond",
-            location: "Rechter knie",
-            date: "16-15-2022",
-            image: <img src={woundTwo}/>,
-            examined: ""
-        }
-    ];
+            location: "Linker knie",
+            date: "15-15-2022",
+            image: <img src={woundOne}/>,
+            examinationId: 1
+    }
+        ,
+        {
+                woundId: 1,
+                name: "Schaafwond",
+                location: "Rechter knie",
+                date: "16-15-2022",
+                image: <img src={woundTwo}/>,
+                examined: false,
+                examinationId: 2
+            }
+        ];
 
+    const [examined, setExamined] = useState(false)
+    const [wounds, setWounds] = useState(woundsData)
 
+function onFormSubmit(data) {
+console.log(data)
+}
 
 
     return(
@@ -53,24 +53,22 @@ function PatientFile(){
                 <h2>Overzicht van wonden</h2>
                 <RadioInput checked="checked" htmlFor="woundOne" woundName="Schaafwond linker knie" />
                 <RadioInput htmlFor="woundOne" woundName="Steekwond buik" />
-                <Button buttonType="button" >Voeg nieuwe wond toe</Button>
+                <Button buttonType="button">Voeg nieuwe wond toe</Button>
             </div>
             <div className="table-container">
             <Table className="photo-table">
-                    {woundData.map((upload) => {
-                       return <tr key={upload.date}>
-                                <td>{upload.name}</td>
-                                <td>{upload.location}</td>
-                                <td>{upload.date}</td>
-                                <td>{upload.image}</td>
-                                <td>{!isExamined
-                                    ? <WoundExamination
-                                        date={upload.date}
+                    {wounds.map((wound) => {
+                       return <tr key={wound.examinationId}>
+                                <td>{wound.name}</td>
+                                <td>{wound.location}</td>
+                                <td>{wound.date}</td>
+                                <td>{wound.image}</td>
+                                <td>
+                                    <WoundExamination
+                                        name={wound.woundId}
+                                        date={wound.date}
                                         onFormSubmit={onFormSubmit}
                                         placeHolder={"Beoordeel wond"}/>
-                                    : <p>beoordeling</p>
-
-                                }
                                 </td>
                        </tr>
                     })}

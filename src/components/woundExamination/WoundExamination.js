@@ -4,13 +4,14 @@ import TextAreaInput from "../Form/TextAreaInput";
 import Button from "../Button/Button";
 import {useForm} from "react-hook-form";
 
-function WoundExamination ({date, placeHolder, onFormSubmit}){
+function WoundExamination ({date, placeHolder, onFormSubmit, onChange,handleClick, name}){
     const { register, handleSubmit, formState: { errors} } = useForm();
 
     return (
         <Form  handleSubmit={handleSubmit(onFormSubmit)}>
             <TextAreaInput
                 htmlFor={date}
+                onChange={onChange}
                 placeholder={placeHolder}
                 fieldName={date}
                 register={register}
@@ -21,7 +22,7 @@ function WoundExamination ({date, placeHolder, onFormSubmit}){
                 cols={20}
                 rows={5}
             />
-            <Button buttonType="submit">Beoordeel wond</Button>
+            <Button buttonType="button" handleClick={handleClick} name={name}>Beoordeel wond</Button>
         </Form>
     )
 }
