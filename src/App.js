@@ -13,7 +13,9 @@ import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 import NursesHome from "./pages/nurses/nurseshome/NursesHome";
 import NursesPatientFiles from "./pages/nurses/nursespatientfiles/NursesPatientFiles";
-import PatientFile from "./components/patientfile/PatientFile";
+import File from "./components/patientfile/File";
+import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
+import PatientFile from "./pages/patients/patientfile/PatientFile";
 
 
 
@@ -21,9 +23,10 @@ function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
   const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"])
-  const home = ["home", "login", "contact", "admin", "verpleegkundigen"]
+  const home = ["home", "login", "contact", "admin", "verpleegkundigen", "patiënten"]
   const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
   const nurses= ["home", "profiel", "patiënten-overzicht", "dossier"]
+  const patients= ["home", "dossier-overzicht", "profiel" ]
   // const [user, setUser] = useState(null)
   // const { id } = useParams()
 
@@ -46,6 +49,8 @@ useEffect(() => {
     }
     else if (location.pathname.includes("verpleegkundigen")){
       setNavItems(nurses)
+    }else if(location.pathname.includes("patiënten")){
+      setNavItems(patients)
     }
   }
   setNavBarItems();
@@ -84,7 +89,11 @@ useEffect(() => {
           <Route exact path="/patiënten-overzicht">
             <NursesPatientFiles />
           </Route>
-          <Route path="/:id" children={<PatientFile />} />
+          {/*<Route path="/:id" children={<File />} />*/}
+          <Route path="/profiel/:id" children={<PatientProfile />} />
+          <Route exact path="/dossier-overzicht">
+            <PatientFile />
+          </Route>
         </Switch>
         {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
         {location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}

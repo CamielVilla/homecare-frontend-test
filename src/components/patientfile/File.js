@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import "./PatientFile.css";
+import "./File.css";
 import Page from "../Page/Page";
 import Table from "../table/Table";
 import Button from "../Button/Button";
@@ -14,12 +14,13 @@ import {upload} from "@testing-library/user-event/dist/upload";
 import {render} from "react-dom";
 
 
-function PatientFile(){
+function File(){
 const [, updateState] = useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
     const woundsData = [
         {
             examined: false,
+            examination:"",
             woundId: 1,
             name: "Schaafwond",
             location: "Linker knie",
@@ -30,6 +31,7 @@ const [, updateState] = useState();
         ,
         {
                 examined: false,
+                examination: "",
                 woundId: 1,
                 name: "Schaafwond",
                 location: "Rechter knie",
@@ -40,19 +42,23 @@ const [, updateState] = useState();
         ];
 
     const [wounds, setWounds] = useState(woundsData)
+    const [examination, setExamination] = useState("")
 
 
 const click = index => e => {
-    let newArr = [...wounds]; // copying the old datas array
-    newArr[index].examined = true;
-    setWounds(newArr)
+    let newArr = [...wounds];// copying the old datas array
+    newArr[index].examination = "beoordeling"
+    // console.log(exam)
     console.log(newArr)
+    // console.log(e)
         forceUpdate();
     }
 
-function onFormSubmit () {
-
+function onFormSubmit (data) {
+setExamination(data)
 }
+
+
 
 
 
@@ -69,23 +75,27 @@ function onFormSubmit () {
             <div className="table-container">
             <Table className="photo-table">
                 {
-                    woundsData.map((wound, index) => {
+                    wounds.map((wound, index) => {
                        return <tr key={wound.examinationId}>
                                 <td>{wound.name}</td>
                                 <td>{wound.location}</td>
                                 <td>{wound.date}</td>
                                 <td>{wound.image}</td>
+                                <td>{wound.examination}</td>
                                 <td>
-                                    {!wound.examined
-                                        ?<WoundExamination
-                                            handleClick={click(index)}
+                                    <WoundExamination
+                                        onFormSubmit={onFormSubmit}
+                                        handleClick={click(index)}
                                         className="examine-container"
                                         name={wound.examinationId}
                                         date={wound.date}
-                                        onFormSubmit={onFormSubmit}
+
                                         placeHolder={"Beoordeel wond"}/>
-                                        :<p>bem</p>}
+
                                 </td>
+                           <td></td>
+
+
                        </tr>
                     })}
             </Table>
@@ -101,4 +111,4 @@ function onFormSubmit () {
     )
 }
 
-export default PatientFile;
+export default File;
