@@ -3,21 +3,24 @@ import Button from "../../../components/Button/Button";
 import { useForm } from "react-hook-form";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
-import React from "react";
+import React, {useContext} from "react";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
 import Page from "../../../components/Page/Page";
+import {AuthContext} from "../../../components/Context/AuthContext";
 
 function ContactPage (){
     const { register, handleSubmit, formState: { errors} } = useForm();
 
     function onFormSubmit(data) {
         console.log(data)
+
     }
 
-    return(
 
+
+    return(
         <Page>
-                <div className="contact-form-container">
+            <div className="contact-form-container">
                     <Form
                         handleSubmit={handleSubmit(onFormSubmit)}
                         title="Stel hier uw vraag"

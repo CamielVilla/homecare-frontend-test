@@ -1,16 +1,19 @@
-import React from "react";
+import React, {useContext} from "react";
 import './Log-in.css';
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
+import {AuthContext} from "../../../components/Context/AuthContext";
+import Page from "../../../components/Page/Page";
 
 
 function LogIn () {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
+    const {loggedIn, logOutFunction, logInFunction} = useContext(AuthContext)
 
 
 function onFormSubmit(data){
@@ -26,8 +29,13 @@ function forgetPassword (){
 }
 
     return (
-        <section className="login-page">
-            <div className="login-page-container">
+        <Page>
+                <button type="button" onClick={logOutFunction}>Uit</button>
+                <button type="button" onClick={logInFunction}>In</button>
+                {loggedIn
+                    ?<p>je bent ingelogd</p>
+                    :<p>je bent uigelogd</p>}
+
                 <div className="login-form-container">
             <Form
                 handleSubmit={handleSubmit(onFormSubmit)}
@@ -62,8 +70,7 @@ function forgetPassword (){
                 </div>
             </Form>
                 </div>
-            </div>
-        </section>
+        </Page>
     )
 }
 
