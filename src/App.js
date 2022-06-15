@@ -1,5 +1,5 @@
 import './App.css';
-import React, {useEffect, useState, useMemo} from "react";
+import React, {useEffect, useState, useMemo, useContext} from "react";
 import {Route, Switch, useLocation, useParams} from "react-router-dom";
 
 import Nav from "./components/Nav/Nav";
@@ -16,17 +16,19 @@ import NursesPatientFiles from "./pages/nurses/nursespatientfiles/NursesPatientF
 import File from "./components/patientfile/File";
 import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
 import PatientFile from "./pages/patients/patientfile/PatientFile";
+import {NavContext} from "./components/Context/NavContext";
 
 
 
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
-  const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"])
-  const home = ["home", "login", "contact", "admin", "verpleegkundigen", "patiënten"]
-  const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
-  const nurses= ["home", "profiel", "patiënten-overzicht", "dossier"]
-  const patients= ["home", "dossier-overzicht", "profiel" ]
+  const {navItems} = useContext(NavContext)
+  // const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"])
+  // const home = ["home", "login", "contact", "admin", "verpleegkundigen", "patiënten"]
+  // const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
+  // const nurses= ["home", "profiel", "patiënten-overzicht", "dossier"]
+  // const patients= ["home", "dossier-overzicht", "profiel" ]
   // const [user, setUser] = useState(null)
   // const { id } = useParams()
 
@@ -34,27 +36,27 @@ function App() {
 
   }
 
-
-useEffect( () => {
-  setUrl(location.pathname)
-}, [location.pathname])
-
-useEffect(() => {
-  function setNavBarItems(){
-    if(location.pathname.includes("home")) {
-      setNavItems(home)
-    }
-    else if(location.pathname.includes("admin")){
-      setNavItems(admin)
-    }
-    else if (location.pathname.includes("verpleegkundigen")){
-      setNavItems(nurses)
-    }else if(location.pathname.includes("patiënten")){
-      setNavItems(patients)
-    }
-  }
-  setNavBarItems();
-},[url]);
+//
+// useEffect( () => {
+//   setUrl(location.pathname)
+// }, [location.pathname])
+//
+// useEffect(() => {
+//   function setNavBarItems(){
+//     if(location.pathname.includes("home")) {
+//       setNavItems(home)
+//     }
+//     else if(location.pathname.includes("admin")){
+//       setNavItems(admin)
+//     }
+//     else if (location.pathname.includes("verpleegkundigen")){
+//       setNavItems(nurses)
+//     }else if(location.pathname.includes("patiënten")){
+//       setNavItems(patients)
+//     }
+//   }
+//   setNavBarItems();
+// },[url]);
 
 
 
@@ -95,8 +97,8 @@ useEffect(() => {
             <PatientFile />
           </Route>
         </Switch>
-        {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
-        {location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}
+        {/*{JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
+        {/*{location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
       </>
   );
 }

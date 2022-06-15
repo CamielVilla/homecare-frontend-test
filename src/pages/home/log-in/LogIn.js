@@ -7,6 +7,7 @@ import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
 import {AuthContext} from "../../../components/Context/AuthContext";
 import Page from "../../../components/Page/Page";
+import {NavContext} from "../../../components/Context/NavContext";
 
 
 function LogIn () {
@@ -14,10 +15,13 @@ function LogIn () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
     const {loggedIn, logOutFunction, logInFunction} = useContext(AuthContext)
+    const {setAdminNavBarFunction} = useContext(NavContext)
 
 
 function onFormSubmit(data){
 console.log(data)
+    logInFunction();
+    setAdminNavBarFunction();
 }
 
 function handleLogin (){
@@ -31,7 +35,7 @@ function forgetPassword (){
     return (
         <Page>
                 <button type="button" onClick={logOutFunction}>Uit</button>
-                <button type="button" onClick={logInFunction}>In</button>
+                <button type="button" onClick={setAdminNavBarFunction}>In</button>
                 {loggedIn
                     ?<p>je bent ingelogd</p>
                     :<p>je bent uigelogd</p>}
