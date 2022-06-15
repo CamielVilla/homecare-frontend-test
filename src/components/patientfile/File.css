@@ -1,0 +1,34 @@
+
+
+.table-container, .patient-wound-container, .treatment-plan-container{
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    border-color: red;
+    border-style: groove;
+    padding: 50px 0px;
+}
+
+.treatment-plan-container h2{
+    padding-bottom: 10px;
+}
+
+.photo-table img{
+    height: 200px;
+}
+
+
+.examine-container{
+}
+
+.patient-wound-container button {
+    width: 200px;
+}
+
+.examine-container{
+
+}
+ input {
+    border-color: red;
+    border-style: groove;
+}

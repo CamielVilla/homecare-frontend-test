@@ -5,19 +5,24 @@ import Form from "../../../components/Form/Form";
 import {useForm} from "react-hook-form";
 import TextInput from "../../../components/Form/TextInput";
 import Button from "../../../components/Button/Button";
+import Page from "../../../components/Page/Page";
 
 function AdminNurses() {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const scrollBarStyle = {
+        border: '1px solid red',
+        width: '500px',
+        height: '400px'
+    };
 
     function onFormSubmit (data) {
     console.log(data)
     }
     return (
-        <div className="admin-nurses-page">
-            <div className="admin-nursers-container">
+        <Page>
         <ScrollContent
             name="Zorgverleners overzicht"
+            scrollBarStyle={scrollBarStyle}
         >
             <div className="nurses-form-container">
             <Form
@@ -75,9 +80,7 @@ function AdminNurses() {
             </Form>
             </div>
         </ScrollContent>
-
-            </div>
-        </div>
+        </Page>
     )
 }
 export default AdminNurses;

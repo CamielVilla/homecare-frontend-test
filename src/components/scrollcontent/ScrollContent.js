@@ -4,12 +4,8 @@ import axios from "axios";
 import Scrollbars from 'react-scrollbar'
 import PersonTile from "../persontile/PersonTile";
 
-function ScrollContent ({name, children}) {
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '500px',
-        height: '400px',
-    };
+function ScrollContent ({name, children, scrollBarStyle}) {
+
 const [person, setPerson] = useState("");
 
 useEffect( () => {
@@ -32,7 +28,7 @@ useEffect( () => {
                 <div className="scroll-content-container">
                 <Scrollbars autoHide={false} style={scrollBarStyle} >
                     {person.results && person.results.map((person) => {
-                        return <PersonTile name={person.name} />
+                        return  <PersonTile key={person.name} name={person.name} id="111" />
                     })}
                 </Scrollbars>
                 </div>

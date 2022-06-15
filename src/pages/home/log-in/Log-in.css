@@ -28,13 +28,3 @@ input, textarea{
 }
 
 
-.button-container-login, .button-container-contact, .button-container-admin-nurses,
-.button-container-admin-patients{
-    border-style: groove;
-    border-color: #344C5B;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 300px;
-}

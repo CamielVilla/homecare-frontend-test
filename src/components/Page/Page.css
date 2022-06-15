@@ -1,0 +1,28 @@
+.homepage, .page  {
+    border-color: gold;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    height: 1200px;
+    color: white;
+}
+
+.homepage-container, .contact-container,  .contact-page-container,
+.login-page-container, .overview-container, .page-container {
+    border-color: pink;
+    border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 0;
+    flex-shrink: 1;
+    align-items:center;
+    flex-basis: 1200px;
+    vertical-align: middle;
+    margin-top: 0px;
+    position: relative;
+    height: 1000px;
+    /*z-index: 4;*/
+}

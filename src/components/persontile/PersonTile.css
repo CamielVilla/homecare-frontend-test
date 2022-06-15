@@ -1,0 +1,21 @@
+.person-tile-container {
+    border-color: black;
+    border-style: groove;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-basis: 400px;
+}
+
+.person-tile-container > div{
+    border-style: groove;
+    border-color: yellow;
+    background-color: #188097;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 500px;
+}

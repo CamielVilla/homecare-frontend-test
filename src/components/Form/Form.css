@@ -8,7 +8,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     margin-bottom: 100px;
-
+    color: white;
 }
 
 .form-children {
@@ -20,6 +20,18 @@
     border-color: red;
 }
 
-input, textarea {
+.form-container input, .form-container textarea {
     width: 300px;
+}
+
+
+
+/*.radio-container input {*/
+/*    position: absolute;*/
+/*    opacity: 0;*/
+/*    cursor: pointer;*/
+/*}*/
+
+.radio-container input{
+width: 10px;
 }

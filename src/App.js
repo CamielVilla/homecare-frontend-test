@@ -1,6 +1,7 @@
 import './App.css';
-import React, {useEffect, useState} from "react";
-import {Route, Switch, useLocation} from "react-router-dom";
+import React, {useEffect, useState, useMemo} from "react";
+import {Route, Switch, useLocation, useParams} from "react-router-dom";
+
 import Nav from "./components/Nav/Nav";
 import HomePage from "./pages/home/homepage/HomePage";
 import LogIn from "./pages/home/log-in/LogIn";
@@ -11,15 +12,28 @@ import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
 import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 import NursesHome from "./pages/nurses/nurseshome/NursesHome";
+import NursesPatientFiles from "./pages/nurses/nursespatientfiles/NursesPatientFiles";
+import File from "./components/patientfile/File";
+import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
+import PatientFile from "./pages/patients/patientfile/PatientFile";
+
 
 
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
-  const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"]);
-  const home = ["home", "login", "contact", "admin", "verpleegkundigen"]
+  const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"])
+  const home = ["home", "login", "contact", "admin", "verpleegkundigen", "patiënten"]
   const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
-  const nurses= ["home", "profiel", "patiënten-overzicht"]
+  const nurses= ["home", "profiel", "patiënten-overzicht", "dossier"]
+  const patients= ["home", "dossier-overzicht", "profiel" ]
+  // const [user, setUser] = useState(null)
+  // const { id } = useParams()
+
+  function getProfile(handle) {
+
+  }
+
 
 useEffect( () => {
   setUrl(location.pathname)
@@ -35,6 +49,8 @@ useEffect(() => {
     }
     else if (location.pathname.includes("verpleegkundigen")){
       setNavItems(nurses)
+    }else if(location.pathname.includes("patiënten")){
+      setNavItems(patients)
     }
   }
   setNavBarItems();
@@ -67,11 +83,20 @@ useEffect(() => {
           <Route exaxt path="/berichten">
             <AdminMessages />
           </Route>
-          <Route exact path="/verpleegkundigen">
+          <Route exact path={["/verpleegkundigen", "/profiel"]}>
             <NursesHome />
+          </Route>
+          <Route exact path="/patiënten-overzicht">
+            <NursesPatientFiles />
+          </Route>
+          {/*<Route path="/:id" children={<File />} />*/}
+          <Route path="/profiel/:id" children={<PatientProfile />} />
+          <Route exact path="/dossier-overzicht">
+            <PatientFile />
           </Route>
         </Switch>
         {JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}
+        {location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}
       </>
   );
 }

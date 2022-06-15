@@ -12,4 +12,14 @@
     width: 200px;
 }
 
+.button-container-login, .button-container-contact, .button-container-admin-nurses,
+.button-container-admin-patients, .button-container-patient-password{
+    border-style: groove;
+    border-color: #344C5B;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 300px;
+}
 

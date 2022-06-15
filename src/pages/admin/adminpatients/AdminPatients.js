@@ -6,11 +6,16 @@ import TextInput from "../../../components/Form/TextInput";
 import Button from "../../../components/Button/Button";
 import {useForm} from "react-hook-form";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
+import Page from "../../../components/Page/Page";
 
 
 function AdminPatients () {
     const { register, handleSubmit, formState: { errors } } = useForm();
-
+    const scrollBarStyle = {
+        border: '1px solid red',
+        width: '500px',
+        height: '400px'
+    };
 
     function onFormSubmit (data) {
         console.log(data)
@@ -20,10 +25,10 @@ function AdminPatients () {
         console.log("photo added")
     }
     return (
-        <div className="admin-patients-page">
-            <div className="admin-patients-container">
+        <Page>
                 <ScrollContent
                     name="Patiënten overzicht"
+                    scrollBarStyle={scrollBarStyle}
                 >
                     <div className="patient-form-container">
                         <Form
@@ -115,9 +120,7 @@ function AdminPatients () {
                         </Form>
                     </div>
                 </ScrollContent>
-
-            </div>
-        </div>
+        </Page>
     )
 }
 export default AdminPatients;
