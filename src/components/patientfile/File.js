@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import WoundExamination from "../woundExamination/WoundExamination";
 import {upload} from "@testing-library/user-event/dist/upload";
 import {render} from "react-dom";
+import {useHistory} from "react-router-dom";
 
 
 function File(){
@@ -43,7 +44,11 @@ const [, updateState] = useState();
 
     const [wounds, setWounds] = useState(woundsData)
     const [examination, setExamination] = useState("")
+    const history = useHistory();
 
+    function addWound(){
+        history.push("/nieuwe-wond")
+    }
 
 const click = index => e => {
     let newArr = [...wounds];// copying the old datas array
@@ -59,10 +64,6 @@ setExamination(data)
 }
 
 
-
-
-
-
     return(
 <Page>
             <h1>Dossier van J. Pieters</h1>
@@ -70,7 +71,7 @@ setExamination(data)
                 <h2>Overzicht van wonden</h2>
                 <RadioInput checked="checked" htmlFor="woundOne" woundName="Schaafwond linker knie" />
                 <RadioInput htmlFor="woundOne" woundName="Steekwond buik" />
-                <Button buttonType="button">Voeg nieuwe wond toe</Button>
+                <Button buttonType="button" handleClick={addWound} >Voeg nieuwe wond toe</Button>
             </div>
             <div className="table-container">
             <Table className="photo-table">
@@ -89,13 +90,9 @@ setExamination(data)
                                         className="examine-container"
                                         name={wound.examinationId}
                                         date={wound.date}
-
                                         placeHolder={"Beoordeel wond"}/>
-
                                 </td>
                            <td></td>
-
-
                        </tr>
                     })}
             </Table>

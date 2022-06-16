@@ -4,19 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
-import AuthContextProvider, {AuthContext} from "./components/Context/AuthContext";
-import NavContextProvider from "./components/Context/NavContext";
+import AuthContextProvider from "./components/Context/AuthContext";
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Router>
         <React.StrictMode>
-            <NavContextProvider>
+            {/*<NavContextProvider>*/}
                 <AuthContextProvider>
                      <App />
                  </AuthContextProvider>
-            </NavContextProvider>
+            {/*</NavContextProvider>*/}
         </React.StrictMode>
     </Router>
 );

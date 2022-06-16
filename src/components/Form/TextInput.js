@@ -1,6 +1,6 @@
 import React from "react";
 
-function TextInput ({isRequired, errors, register, fieldName, htmlFor, type, placeholder, minimLength, maximLength})
+function TextInput ({isRequired, errors, register, fieldName, htmlFor, type, placeholder, minimLength, maximLength, value})
 {
 
 
@@ -12,6 +12,7 @@ function TextInput ({isRequired, errors, register, fieldName, htmlFor, type, pla
                     placeholder={placeholder}
                     className={htmlFor}
                     id={htmlFor}
+                    value={value}
                     {...(register && register(fieldName,
                         {
                         required: {

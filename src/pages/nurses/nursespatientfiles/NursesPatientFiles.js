@@ -2,7 +2,7 @@ import React from "react";
 import "./NursesPatientFiles.css";
 import Page from "../../../components/Page/Page";
 import Form from "../../../components/Form/Form";
-import ScrollContent from "../../../components/scrollcontent/ScrollContent";
+import GetUsers from "../../../components/getfunctions/GetUsers";
 import {NavLink} from "react-router-dom";
 
 function NursesPatientFiles(){
@@ -13,11 +13,11 @@ function NursesPatientFiles(){
     };
     return(
         <Page>
-            <ScrollContent
+            <GetUsers
             name="Patiënten-overzicht"
             scrollBarStyle={scrollBarStyle}
             >
-            </ScrollContent>
+            </GetUsers>
         </Page>
     )
 }

@@ -15,13 +15,11 @@ function LogIn () {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const history = useHistory();
     const {loggedIn, logOutFunction, logInFunction} = useContext(AuthContext)
-    const {setAdminNavBarFunction} = useContext(NavContext)
 
 
 function onFormSubmit(data){
 console.log(data)
     logInFunction();
-    setAdminNavBarFunction();
 }
 
 function handleLogin (){
@@ -34,11 +32,11 @@ function forgetPassword (){
 
     return (
         <Page>
-                <button type="button" onClick={logOutFunction}>Uit</button>
-                <button type="button" onClick={setAdminNavBarFunction}>In</button>
-                {loggedIn
-                    ?<p>je bent ingelogd</p>
-                    :<p>je bent uigelogd</p>}
+                {/*<button type="button" onClick={logOutFunction}>Uit</button>*/}
+                {/*<button type="button" onClick={setAdminNavBarFunction}>In</button>*/}
+                {/*{loggedIn*/}
+                {/*    ?<p>je bent ingelogd</p>*/}
+                {/*    :<p>je bent uigelogd</p>}*/}
 
                 <div className="login-form-container">
             <Form
