@@ -2,7 +2,7 @@ import React from "react";
 import "./Form.css";
 
 function TextAreaInput({isRequired, errors, register, fieldName, htmlFor,
-                           placeholder, minimLength, maximLength, cols, rows, onChange}) {
+                           placeholder, minimLength, maximLength, cols, rows, value}) {
 
 
     return (
@@ -12,7 +12,7 @@ function TextAreaInput({isRequired, errors, register, fieldName, htmlFor,
                 placeholder={placeholder}
                 className={htmlFor}
                 id={htmlFor}
-                onChange={onChange}
+                value={value}
                 cols={cols}
                 rows={rows}
                 {...(register && register(fieldName,

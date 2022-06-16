@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminMessages.css"
-import ScrollContent from "../../../components/scrollcontent/ScrollContent";
+import GetUsers from "../../../components/getfunctions/GetUsers";
 import Page from "../../../components/Page/Page";
 
 function AdminMessages (){
@@ -12,10 +12,10 @@ function AdminMessages (){
     return (
 
         <Page>
-        <ScrollContent
+        <GetUsers
             scrollBarStyle={scrollBarStyle}
         name="Berichten overzicht"
-        ></ScrollContent>
+        ></GetUsers>
         </Page>
     )
 }

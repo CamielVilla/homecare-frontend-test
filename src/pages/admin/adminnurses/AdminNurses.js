@@ -1,6 +1,6 @@
 import React from "react";
 import "./AdminNurses.css"
-import ScrollContent from "../../../components/scrollcontent/ScrollContent";
+import GetUsers from "../../../components/getfunctions/GetUsers";
 import Form from "../../../components/Form/Form";
 import {useForm} from "react-hook-form";
 import TextInput from "../../../components/Form/TextInput";
@@ -20,7 +20,7 @@ function AdminNurses() {
     }
     return (
         <Page>
-        <ScrollContent
+        <GetUsers
             name="Zorgverleners overzicht"
             scrollBarStyle={scrollBarStyle}
         >
@@ -79,7 +79,7 @@ function AdminNurses() {
                 </div>
             </Form>
             </div>
-        </ScrollContent>
+        </GetUsers>
         </Page>
     )
 }

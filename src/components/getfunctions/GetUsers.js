@@ -1,19 +1,18 @@
 import React, {useEffect, useState} from "react";
-import "./ScrollContent.css";
+import "./GetUsers.css";
 import axios from "axios";
 import Scrollbars from 'react-scrollbar'
 import PersonTile from "../persontile/PersonTile";
 
-function ScrollContent ({name, children, scrollBarStyle}) {
+function GetUsers ({name, children, scrollBarStyle}) {
 
-const [person, setPerson] = useState("");
+const [users, setUsers] = useState([]);
 
 useEffect( () => {
     async function fetchPatients(){
         try {
-            const result = await axios.get("https://pokeapi.co/api/v2/pokemon/")
-            console.log(result.data);
-            setPerson(result.data);
+            const result = await axios.get("http://localhost:8080/patients")
+            setUsers(result.data);
         }catch (e) {
             console.error(e)
         }
@@ -27,8 +26,8 @@ useEffect( () => {
                 <h1>{name}</h1>
                 <div className="scroll-content-container">
                 <Scrollbars autoHide={false} style={scrollBarStyle} >
-                    {person.results && person.results.map((person) => {
-                        return  <PersonTile key={person.name} name={person.name} id="111" />
+                    {users.map((user) => {
+                        return  <PersonTile key={user.id} name={user.name} id={user.id} />
                     })}
                 </Scrollbars>
                 </div>
@@ -38,4 +37,4 @@ useEffect( () => {
 
     )
 }
-export default ScrollContent;
+export default GetUsers;
