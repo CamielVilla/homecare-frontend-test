@@ -4,86 +4,22 @@ import Page from "../Page/Page";
 import Table from "../table/Table";
 import Button from "../Button/Button";
 import RadioInput from "../Form/RadioInput";
-import woundOne from "../../assets/symbols/Schermafbeelding 2022-05-04 om 11.43 1.png";
-import woundTwo from "../../assets/symbols/wond2.jpeg"
-import Form from "../Form/Form";
-import TextAreaInput from "../Form/TextAreaInput";
 import { useForm } from "react-hook-form";
 import WoundExamination from "../woundExamination/WoundExamination";
-import {upload} from "@testing-library/user-event/dist/upload";
-import {render} from "react-dom";
 import {useHistory} from "react-router-dom";
 import axios from "axios";
-import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
+
 
 
 function File(){
-    const [file, setFile] = useState([]);
-    const [addSucces, toggleAddSucces] = useState(false);
-    const [previewUrl, setPreviewUrl] = useState("");
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
-
-
-    const history = useHistory();
-
-    function handleImageChange(e) {
-        const uploadedFile = e.target.files[0];
-        console.log(uploadedFile);
-
-        setFile(uploadedFile);
-
-        setPreviewUrl(URL.createObjectURL(uploadedFile));
-    }
-
-    async function sendImage(comment) {
-        console.log(comment.patientComment)
-        const formData = new FormData();
-        formData.append("file", file);
-        try {
-            const result = await axios.post('http://localhost:8080/wounds/2000/upload',
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    }
-                })
-            console.log(result.data);
-            toggleAddSucces(true);
-            setPreviewUrl("")
-            setFile([])
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
     const [, updateState] = useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
-    const woundsData = [
-        {
-            examined: false,
-            examination:"",
-            woundId: 1,
-            name: "Schaafwond",
-            location: "Linker knie",
-            date: "15-15-2022",
-            image: <img src={woundOne}/>,
-            examinationId: 1
-    }
-        ,
-        {
-                examined: false,
-                examination: "",
-                woundId: 1,
-                name: "Schaafwond",
-                location: "Rechter knie",
-                date: "16-15-2022",
-                image: <img src={woundTwo}/>,
-                examinationId: 2
-            }
-        ];
-    const [wounds, setWounds] = useState(woundsData)
+    const [woundExaminations, setWoundExaminations] = useState([])
     const [examination, setExamination] = useState("")
+    const [treatmentplan, setTreatmentplan] = useState("")
 
+    const history = useHistory();
 
 
     function addWound(){
@@ -94,16 +30,30 @@ function File(){
         history.push("/wond-foto")
     }
 
-const click = index => e => {
-    let newArr = [...wounds];
-    newArr[index].examination = "beoordeling"
-    console.log(newArr)
-        forceUpdate();
-    }
+// const click = index => e => {
+//     let newArr = [...woundExaminations];
+//     newArr[index].examination = "beoordeling"
+//     console.log(newArr)
+//         forceUpdate();
+//     }
 
 function onFormSubmit (data) {
 setExamination(data)
 }
+
+    useEffect( () => {
+        async function fetchPatientData(){
+            try {
+                const result = await axios.get("http://localhost:8080/wounds/2000")
+                console.log(result.data.woundExamination);
+                setWoundExaminations(result.data.woundExamination);
+            }catch (e) {
+                console.error(e)
+            }
+        }fetchPatientData();
+    } , [])
+
+
 
 
     return(
@@ -120,23 +70,21 @@ setExamination(data)
            <Button handleClick={addWoundPhoto}>Voeg foto toe</Button>
             <Table className="photo-table">
                 {
-                    wounds.map((wound, index) => {
+                    woundExaminations.map((wound, index) => {
                        return <tr key={wound.examinationId}>
-                                <td>{wound.name}</td>
-                                <td>{wound.location}</td>
-                                <td>{wound.date}</td>
-                                <td>{wound.image}</td>
-                                <td>{wound.examination}</td>
-                                <td>
-                                    <WoundExamination
-                                        onFormSubmit={onFormSubmit}
-                                        handleClick={click(index)}
-                                        className="examine-container"
-                                        name={wound.examinationId}
-                                        date={wound.date}
-                                        placeHolder={"Beoordeel wond"}/>
-                                </td>
-                           <td></td>
+                                <td>{wound.photoDate}</td>
+                                <td><img src={wound.file.url} alt={wound.id} /></td>
+                                <td>{wound.nurseAssessment}</td>
+            {/*                    <td>*/}
+            {/*                        <WoundExamination*/}
+            {/*                            onFormSubmit={onFormSubmit}*/}
+            {/*                            // handleClick={click(index)}*/}
+            {/*                            className="examine-container"*/}
+            {/*                            name={wound.examinationId}*/}
+            {/*                            date={wound.date}*/}
+            {/*                            placeHolder={"Beoordeel wond"}/>*/}
+            {/*                    </td>*/}
+            {/*               <td></td>*/}
                        </tr>
                     })}
             </Table>
@@ -144,7 +92,7 @@ setExamination(data)
             </div>
     <div className="treatment-plan-container">
         <h2>Behandplan</h2>
-        <p>tweemaal daags spoelen</p>
+        <p>{treatmentplan}</p>
     </div>
 
 </Page>

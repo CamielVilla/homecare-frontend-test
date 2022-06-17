@@ -25,12 +25,11 @@ function AddWoundPhoto() {
         setPreviewUrl(URL.createObjectURL(uploadedFile));
     }
 
-    async function sendImage(comment) {
-        console.log(comment.patientComment)
+    async function sendImage() {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            const result = await axios.post('http://localhost:8080/wounds/2000/upload',
+            const result = await axios.post('http://localhost:8080/wounds/2000/photo',
                formData,
                 {
                     headers: {
@@ -39,9 +38,9 @@ function AddWoundPhoto() {
                 })
             console.log(result.data);
             toggleAddSucces(true);
-            reset();
-            setPreviewUrl("")
-            setFile([])
+            // reset();
+            // setPreviewUrl("")
+            // setFile([])
         } catch (e) {
             console.error(e)
         }

@@ -8,8 +8,6 @@ function Table ({children, className}){
 <div>
     <table className={className}>
         <tr>
-            <th>Naam wond</th>
-            <th>Locatie</th>
             <th>Datum</th>
             <th>Foto</th>
             <th>Beoordeling</th>
