@@ -9,39 +9,22 @@ import Page from "../../components/Page/Page";
 import axios from "axios";
 
 function AddWound() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const [file, setFile] = useState("");
-    const [previewUrl, setPreviewUrl] = useState("");
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [addSucces, toggleAddSucces] = useState(false)
 
-    function handleImageChange (e){
-        const uploadedFile = e.target.files[0];
-        console.log(uploadedFile)
-        setFile(uploadedFile);
-        setPreviewUrl(URL.createObjectURL(uploadedFile));
-    }
-
-    async function sendImage(e){
-        const formData = new formData();
-        formData.append("file", file)
-
-        try {
-            // verstuur ons formData object en geef in de header aan dat het om een form-data type gaat
-            // Let op: we wijzigen nu ALTIJD de afbeelding voor student 1001, als je een andere student wil kiezen of dit dynamisch wil maken, pas je de url aan!
-            const result = await axios.post('http://localhost:8080/patients/1002/wound', formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data"
-                    },
-                })
-            console.log(result.data);
-        } catch (e) {
-            console.error(e)
-        }
-    }
-
-
-    function addNewWound(){
-        console.log(("nieuwe wond toegevoegd!"))
+    async function addNewWound(e){
+       try{
+           const response = await axios.post("http://localhost:8080/patients/1002/wound", {
+               woundName: e.patientWound,
+               woundLocation: e.patientWoundLocation,
+               treatmentPlan: e.woundPlan,
+           })
+           console.log(response.data)
+           toggleAddSucces(true)
+           reset()
+       }catch (e){
+           console.error(e)
+       }
     }
     return (
         <Page>
@@ -94,25 +77,12 @@ function AddWound() {
                 rows={30}
             />
 
-            {/*<label htmlFor="wound-image">*/}
-            {/*    <input type="file"*/}
-            {/*           id="wound-image"*/}
-            {/*           name="image-field"*/}
-            {/*           onChange={handleImageChange}*/}
-            {/*    />*/}
-            {/*</label>*/}
-            {previewUrl &&
-                <label>
-                    Preview:
-                    <img
-                        src={previewUrl}
-                        alt="voorbeeld van de afbeelding" className="image-preview" />
-                </label>
-            }
+
             <div className="button-container">
                 <Button buttonType="reset">Reset</Button>
                 <Button buttonType="submit">Voeg toe</Button>
             </div>
+            {addSucces && <h3>Wond toegevoegd</h3>}
         </Form>
         </Page>
     )

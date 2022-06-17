@@ -13,10 +13,50 @@ import WoundExamination from "../woundExamination/WoundExamination";
 import {upload} from "@testing-library/user-event/dist/upload";
 import {render} from "react-dom";
 import {useHistory} from "react-router-dom";
+import axios from "axios";
+import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 
 
 function File(){
-const [, updateState] = useState();
+    const [file, setFile] = useState([]);
+    const [addSucces, toggleAddSucces] = useState(false);
+    const [previewUrl, setPreviewUrl] = useState("");
+    const {register, handleSubmit, reset, formState: {errors}} = useForm();
+
+
+    const history = useHistory();
+
+    function handleImageChange(e) {
+        const uploadedFile = e.target.files[0];
+        console.log(uploadedFile);
+
+        setFile(uploadedFile);
+
+        setPreviewUrl(URL.createObjectURL(uploadedFile));
+    }
+
+    async function sendImage(comment) {
+        console.log(comment.patientComment)
+        const formData = new FormData();
+        formData.append("file", file);
+        try {
+            const result = await axios.post('http://localhost:8080/wounds/2000/upload',
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data"
+                    }
+                })
+            console.log(result.data);
+            toggleAddSucces(true);
+            setPreviewUrl("")
+            setFile([])
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    const [, updateState] = useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
     const woundsData = [
         {
@@ -41,21 +81,23 @@ const [, updateState] = useState();
                 examinationId: 2
             }
         ];
-
     const [wounds, setWounds] = useState(woundsData)
     const [examination, setExamination] = useState("")
-    const history = useHistory();
+
+
 
     function addWound(){
         history.push("/nieuwe-wond")
     }
 
+    function addWoundPhoto(){
+        history.push("/wond-foto")
+    }
+
 const click = index => e => {
-    let newArr = [...wounds];// copying the old datas array
+    let newArr = [...wounds];
     newArr[index].examination = "beoordeling"
-    // console.log(exam)
     console.log(newArr)
-    // console.log(e)
         forceUpdate();
     }
 
@@ -73,7 +115,9 @@ setExamination(data)
                 <RadioInput htmlFor="woundOne" woundName="Steekwond buik" />
                 <Button buttonType="button" handleClick={addWound} >Voeg nieuwe wond toe</Button>
             </div>
+
             <div className="table-container">
+           <Button handleClick={addWoundPhoto}>Voeg foto toe</Button>
             <Table className="photo-table">
                 {
                     wounds.map((wound, index) => {

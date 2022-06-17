@@ -17,6 +17,7 @@ import File from "./components/patientfile/File";
 import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
 import PatientFile from "./pages/patients/patientfile/PatientFile";
 import AddWound from "./pages/Wound/AddWound";
+import AddWoundPhoto from "./pages/Wound/AddWoundPhoto";
 
 
 
@@ -92,6 +93,9 @@ useEffect(() => {
           </Route>
           <Route exact path="/nieuwe-wond">
             <AddWound />
+          </Route>
+          <Route exact path="/wond-foto">
+            <AddWoundPhoto />
           </Route>
           {/*<Route path="/:id" children={<File />} />*/}
           <Route path="/profiel/:id" children={<PatientProfile />} />
