@@ -6,8 +6,9 @@ import Button from "../Button/Button";
 import RadioInput from "../Form/RadioInput";
 import { useForm } from "react-hook-form";
 import WoundExamination from "../woundExamination/WoundExamination";
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
+import Nav from "../Nav/Nav";
 
 
 
@@ -18,6 +19,10 @@ function File(){
     const [woundExaminations, setWoundExaminations] = useState([])
     const [examination, setExamination] = useState("")
     const [treatmentplan, setTreatmentplan] = useState("")
+    const [woundId, setWoundId] = useState("")
+    const [patientId, setPatientId] = useState("1002")
+    const [wounds, setWounds] = useState([])
+    const [wound, setWound] = useState("")
 
     const history = useHistory();
 
@@ -29,6 +34,7 @@ function File(){
     function addWoundPhoto(){
         history.push("/wond-foto")
     }
+
 
 // const click = index => e => {
 //     let newArr = [...woundExaminations];
@@ -44,9 +50,15 @@ setExamination(data)
     useEffect( () => {
         async function fetchPatientData(){
             try {
-                const result = await axios.get("http://localhost:8080/wounds/2000")
-                console.log(result.data.woundExamination);
-                setWoundExaminations(result.data.woundExamination);
+                const result = await axios.get(`http://localhost:8080/patients/${patientId}/${woundId}`)
+                console.log(result.data.wounds)
+                setWounds(result.data.wounds)
+                setWoundExaminations(result.data.wounds[0].woundExaminations)
+                console.log(woundExaminations)
+                console.log(wound)
+                // console.log(wounds[0].woundName)
+                // console.log(result.data.woundExamination);
+                // setWoundExaminations(result.data.woundExamination);
             }catch (e) {
                 console.error(e)
             }
@@ -55,23 +67,28 @@ setExamination(data)
 
 
 
-
     return(
 <Page>
             <h1>Dossier van J. Pieters</h1>
             <div className="patient-wound-container">
                 <h2>Overzicht van wonden</h2>
-                <RadioInput checked="checked" htmlFor="woundOne" woundName="Schaafwond linker knie" />
-                <RadioInput htmlFor="woundOne" woundName="Steekwond buik" />
+                {wounds.map((wound) => {
+                   return  <Button buttonType="button" handleClick={() => {
+                       setWoundExaminations(wound.woundExaminations); setWound(wound);}}
+                   >
+                       {wound.woundName}
+                   </Button>
+                 })}
                 <Button buttonType="button" handleClick={addWound} >Voeg nieuwe wond toe</Button>
             </div>
 
             <div className="table-container">
+                <h2>{wound.woundName}</h2>
            <Button handleClick={addWoundPhoto}>Voeg foto toe</Button>
             <Table className="photo-table">
                 {
                     woundExaminations.map((wound, index) => {
-                       return <tr key={wound.examinationId}>
+                       return <tr key={wound.id}>
                                 <td>{wound.photoDate}</td>
                                 <td><img src={wound.file.url} alt={wound.id} /></td>
                                 <td>{wound.nurseAssessment}</td>

@@ -100,7 +100,7 @@ useEffect(() => {
           {/*<Route path="/:id" children={<File />} />*/}
           <Route path="/profiel/:id" children={<PatientProfile />} />
           <Route exact path="/dossier-overzicht">
-            <PatientFile />
+            <File />
           </Route>
         </Switch>
         {/*{JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
