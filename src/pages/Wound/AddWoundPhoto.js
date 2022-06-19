@@ -6,7 +6,7 @@ import {useForm} from "react-hook-form";
 import Button from "../../components/Button/Button";
 import {useHistory} from "react-router-dom";
 
-function AddWoundPhoto() {
+function AddWoundPhoto({woundId}) {
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
     const [file, setFile] = useState([]);
@@ -29,7 +29,7 @@ function AddWoundPhoto() {
         const formData = new FormData();
         formData.append("file", file);
         try {
-            const result = await axios.post('http://localhost:8080/wounds/2000/photo',
+            const result = await axios.post(`http://localhost:8080/wounds/${woundId}/photo`,
                formData,
                 {
                     headers: {
@@ -47,7 +47,7 @@ function AddWoundPhoto() {
     }
     return (
 
-        <Page>
+        // <Page>
             <Form title="Voeg foto toe" handleSubmit={handleSubmit(sendImage)}>
                 <label htmlFor="wound-image" className="wound-image">
                     <input type="file"
@@ -67,7 +67,7 @@ function AddWoundPhoto() {
                 <Button buttonType="submit">Voeg foto toe</Button>
                 {addSucces && <h3>Foto toegevoegd</h3>}
             </Form>
-        </Page>
+        // </Page>
     )
 }
 
