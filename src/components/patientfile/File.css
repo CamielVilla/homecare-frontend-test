@@ -1,6 +1,6 @@
 
 
-.table-container, .patient-wound-container, .treatment-plan-container{
+.table-container, .treatment-plan-container{
     align-self: flex-start;
     display: flex;
     flex-direction: column;
@@ -9,16 +9,36 @@
     padding: 50px 0px;
 }
 
+.patient-wound-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+}
+
 .table-container button{
     margin-bottom: 20px;
     width: 200px;
+}
+
+.table-container h1{
+    align-self: center;
 }
 .treatment-plan-container h2{
     padding-bottom: 10px;
 }
 
+.photo-table td{
+    text-align: center;
+    vertical-align: middle;
+}
+
 .photo-table img{
     height: 200px;
+    border-style: groove;
+    border-color: red;
+
 }
 
 
@@ -38,12 +58,17 @@
 }
 
 input[type="file"] {
-    background-color: #344C5B;
+    background-color: #188097;
     margin-top: 10px;
     margin-bottom: 10px;
-
 }
 
+.add-photo-container{
+    display: flex;
+    flex-direction: column;
+    border-color: red;
+    border-style: groove;
+}
 .wound-image{
     margin-top: 20px;
     margin-bottom: 50px;
