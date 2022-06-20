@@ -1,20 +1,34 @@
-import React from "react";
+import React, {useState} from "react";
+import "./AddWound.css";
 import {useForm} from "react-hook-form";
 import Form from "../../components/Form/Form";
 import TextInput from "../../components/Form/TextInput";
 import TextAreaInput from "../../components/Form/TextAreaInput";
 import Button from "../../components/Button/Button";
 import Page from "../../components/Page/Page";
+import axios from "axios";
 
 function AddWound() {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const [addSucces, toggleAddSucces] = useState(false)
 
-
-    function addNewWound(){
-        console.log(("nieuwe wond toegevoegd!"))
+    async function addNewWound(e){
+       try{
+           const response = await axios.post("http://localhost:8080/patients/1002/wound", {
+               woundName: e.patientWound,
+               woundLocation: e.patientWoundLocation,
+               treatmentPlan: e.woundPlan,
+           })
+           console.log(response.data)
+           toggleAddSucces(true)
+           reset()
+       }catch (e){
+           console.error(e)
+       }
     }
     return (
         <Page>
+
         <Form
         title="Voeg nieuwe wond toe"
         handleSubmit={handleSubmit(addNewWound)}
@@ -41,6 +55,15 @@ function AddWound() {
                 maximLength={50}
                 isRequired={true}
             />
+            {/*<TextInput*/}
+            {/*    htmlFor="wound-image"*/}
+            {/*    type="file"*/}
+            {/*    register={register}*/}
+            {/*    errors={errors}*/}
+            {/*    isRequired={true}*/}
+            {/*/>*/}
+
+
             <TextAreaInput
                 htmlFor="wound-plan"
                 placeholder="Behandelplan"
@@ -53,10 +76,13 @@ function AddWound() {
                 cols={40}
                 rows={30}
             />
+
+
             <div className="button-container">
                 <Button buttonType="reset">Reset</Button>
                 <Button buttonType="submit">Voeg toe</Button>
             </div>
+            {addSucces && <h3>Wond toegevoegd</h3>}
         </Form>
         </Page>
     )
