@@ -5,22 +5,35 @@ import { useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
-import {AuthContext} from "../../../components/Context/AuthContext";
+import {AuthContext} from "../../../Context/AuthContext";
 import Page from "../../../components/Page/Page";
-import {NavContext} from "../../../components/Context/NavContext";
+import {NavContext} from "../../../Context/NavContext";
+import axios from "axios";
 
 
 function LogIn () {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const history = useHistory();
-    const {loggedIn, logOutFunction, logInFunction} = useContext(AuthContext)
+    const {logInFunction} = useContext(AuthContext)
 
 
-function onFormSubmit(data){
-console.log(data)
-    logInFunction();
-}
+    async function checkAuth(e) {
+        console.log(e)
+        try {
+            const response = await axios.post(`http://localhost:8080/login`, {
+                "email": e.loginEmail,
+                "password": e.loginPassword
+            });
+            logInFunction(response.data)
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+// console.log(e)
+//     logInFunction();
+// }
 
 function handleLogin (){
 }
@@ -40,7 +53,7 @@ function forgetPassword (){
 
                 <div className="login-form-container">
             <Form
-                handleSubmit={handleSubmit(onFormSubmit)}
+                handleSubmit={handleSubmit(checkAuth)}
                 title="Log in met uw Homecare gegevens"
             >
                 <TextInput

@@ -6,7 +6,7 @@ import TextInput from "../../../components/Form/TextInput";
 import React, {useContext} from "react";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
 import Page from "../../../components/Page/Page";
-import {AuthContext} from "../../../components/Context/AuthContext";
+import {AuthContext} from "../../../Context/AuthContext";
 
 function ContactPage (){
     const { register, handleSubmit, formState: { errors} } = useForm();

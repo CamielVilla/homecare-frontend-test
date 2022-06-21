@@ -14,7 +14,6 @@ import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import WoundsToAsses from "./pages/nurses/woundstoassess/WoundsToAsses";
 import PatientFile from "./components/patientfile/PatientFile";
-import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
 import AddWound from "./pages/Wound/AddWound";
 import AddWoundPhoto from "./pages/Wound/AddWoundPhoto";
 

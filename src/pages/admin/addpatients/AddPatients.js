@@ -20,7 +20,7 @@ function AddPatients () {
 
     async function addPatient (e) {
        try {
-           const response = await axios.post('http://localhost:8080/patients',  {
+           const response = await axios.post('http://localhost:8080/admin/addpatient',  {
                name: e.patientName,
                dateOfBirth: e.patientDob,
                email: e.patientEmail,

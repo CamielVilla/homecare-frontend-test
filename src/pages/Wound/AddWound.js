@@ -14,7 +14,7 @@ function AddWound() {
 
     async function addNewWound(e){
        try{
-           const response = await axios.post("http://localhost:8080/patients/1002/wound", {
+           const response = await axios.post("http://localhost:8080/admin/1002/addwound", {
                woundName: e.patientWound,
                woundLocation: e.patientWoundLocation,
                treatmentPlan: e.woundPlan,
