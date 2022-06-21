@@ -10,8 +10,8 @@
 }
 
 .homepage-container, .contact-container,  .contact-page-container,
-.login-page-container, .overview-container, .page-container {
-    border-color: pink;
+.login-page-container, .page-container {
+    border-color: black;
     border-style: groove;
     display: flex;
     flex-direction: column;
@@ -24,5 +24,6 @@
     margin-top: 0px;
     position: relative;
     height: 1000px;
+    padding-top: 50px;
     /*z-index: 4;*/
 }

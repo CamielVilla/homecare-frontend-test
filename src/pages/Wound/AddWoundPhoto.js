@@ -12,7 +12,6 @@ function AddWoundPhoto({woundId}) {
     const [file, setFile] = useState([]);
     const [disabled, toggleDisabled] = useState(true);
     const [addSucces, toggleAddSucces] = useState(false);
-
     const history = useHistory();
 
     function handleImageChange(e) {

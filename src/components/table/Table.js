@@ -2,16 +2,12 @@ import React from "react";
 import "./Table.css"
 
 
-function Table ({children, className}){
+function Table ({children, className, title}){
 
     return(
 <div>
+    <h1>{title}</h1>
     <table className={className}>
-        <tr>
-            <th>Datum</th>
-            <th>Foto</th>
-            <th>Beoordeling</th>
-        </tr>
             {children}
     </table>
 

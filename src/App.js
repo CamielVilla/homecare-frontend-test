@@ -8,14 +8,13 @@ import LogIn from "./pages/home/log-in/LogIn";
 import ContactPage from "./pages/home/contactpage/ContactPage";
 import nurse from "./assets/symbols/nurse.png";
 import AdminHome from "./pages/admin/adminhome/AdminHome";
-import AdminPatients from "./pages/admin/adminpatients/AdminPatients";
-import AdminNurses from "./pages/admin/adminnurses/AdminNurses";
+import AddPatients from "./pages/admin/addpatients/AddPatients";
+import AddNurses from "./pages/admin/addnurses/AddNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
-import NursesHome from "./pages/nurses/nurseshome/NursesHome";
-import NursesPatientFiles from "./pages/nurses/nursespatientfiles/NursesPatientFiles";
-import File from "./components/patientfile/File";
+import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import WoundsToAsses from "./pages/nurses/woundstoassess/WoundsToAsses";
+import PatientFile from "./components/patientfile/PatientFile";
 import PatientProfile from "./pages/patients/patientprofile/PatientProfile";
-import PatientFile from "./pages/patients/patientfile/PatientFile";
 import AddWound from "./pages/Wound/AddWound";
 import AddWoundPhoto from "./pages/Wound/AddWoundPhoto";
 
@@ -24,10 +23,10 @@ import AddWoundPhoto from "./pages/Wound/AddWoundPhoto";
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
-  const [navItems, setNavItems] = useState(["home", "login", "contact", "admin"])
-  const home = ["home", "login", "contact", "admin", "verpleegkundigen", "patiënten"]
+  const [navItems, setNavItems] = useState( ["home", "login", "contact", "patiënten",
+    "zorgverleners", "berichten", "profiel", "wonden-overzicht", "dossier-overzicht"])
   const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
-  const nurses= ["home", "profiel", "patiënten-overzicht", "dossier"]
+  const nurses= ["home", "profiel", "patiënten-overzicht", "wonden"]
   const patients= ["home", "dossier-overzicht", "profiel" ]
   const [user, setUser] = useState(null)
   const { id } = useParams()
@@ -37,26 +36,26 @@ function App() {
   }
 
 
-useEffect( () => {
-  setUrl(location.pathname)
-}, [location.pathname])
-
-useEffect(() => {
-  function setNavBarItems(){
-    if(location.pathname.includes("home")) {
-      setNavItems(home)
-    }
-    else if(location.pathname.includes("admin")){
-      setNavItems(admin)
-    }
-    else if (location.pathname.includes("verpleegkundigen")){
-      setNavItems(nurses)
-    }else if(location.pathname.includes("patiënten")){
-      setNavItems(patients)
-    }
-  }
-  setNavBarItems();
-},[url]);
+// useEffect( () => {
+//   setUrl(location.pathname)
+// }, [location.pathname])
+//
+// useEffect(() => {
+//   function setNavBarItems(){
+//     if(location.pathname.includes("home")) {
+//       setNavItems(home)
+//     }
+//     else if(location.pathname.includes("admin")){
+//       setNavItems(admin)
+//     }
+//     else if (location.pathname.includes("verpleegkundigen")){
+//       setNavItems(nurses)
+//     }else if(location.pathname.includes("patiënten")){
+//       setNavItems(patients)
+//     }
+//   }
+//   setNavBarItems();
+// },[url]);
 
 
 
@@ -77,19 +76,19 @@ useEffect(() => {
             <AdminHome />
           </Route>
           <Route exact path="/zorgverleners">
-            <AdminNurses />
+            <AddNurses />
           </Route>
           <Route exact path="/patiënten">
-            <AdminPatients />
+            <AddPatients />
           </Route>
           <Route exaxt path="/berichten">
             <AdminMessages />
           </Route>
-          <Route exact path={["/verpleegkundigen", "/profiel"]}>
-            <NursesHome />
+          <Route exact path={"/verpleegkundigen"}>
+            <ProfilePage />
           </Route>
-          <Route exact path="/patiënten-overzicht">
-            <NursesPatientFiles />
+          <Route exact path="/wonden-overzicht">
+            <WoundsToAsses />
           </Route>
           <Route exact path="/nieuwe-wond">
             <AddWound />
@@ -97,10 +96,13 @@ useEffect(() => {
           <Route exact path="/wond-foto">
             <AddWoundPhoto />
           </Route>
-          {/*<Route path="/:id" children={<File />} />*/}
-          <Route path="/profiel/:id" children={<PatientProfile />} />
+          <Route exact path="/profiel">
+            <ProfilePage />
+          </Route>
+          {/*<Route path="/:id" children={<PatientFile />} />*/}
+          {/*<Route path="/profiel/:id" children={<PatientProfile />} />*/}
           <Route exact path="/dossier-overzicht">
-            <File />
+            <PatientFile />
           </Route>
         </Switch>
         {/*{JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
