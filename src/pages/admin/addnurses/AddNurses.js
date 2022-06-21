@@ -1,5 +1,5 @@
 import React from "react";
-import "./AdminNurses.css"
+import "./AddNurses.css"
 import GetUsers from "../../../components/getfunctions/GetUsers";
 import Form from "../../../components/Form/Form";
 import {useForm} from "react-hook-form";
@@ -7,7 +7,7 @@ import TextInput from "../../../components/Form/TextInput";
 import Button from "../../../components/Button/Button";
 import Page from "../../../components/Page/Page";
 
-function AdminNurses() {
+function AddNurses() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const scrollBarStyle = {
         border: '1px solid red',
@@ -22,8 +22,12 @@ function AdminNurses() {
         <Page>
         <GetUsers
             name="Zorgverleners overzicht"
-            scrollBarStyle={scrollBarStyle}
-        >
+            toUser="naar zorverlener"
+            userType="nurses"
+            columnOne="Naam"
+            columnTwo="email"
+         />
+
             <div className="nurses-form-container">
             <Form
                 handleSubmit={handleSubmit(onFormSubmit)}
@@ -79,8 +83,7 @@ function AdminNurses() {
                 </div>
             </Form>
             </div>
-        </GetUsers>
         </Page>
     )
 }
-export default AdminNurses;
+export default AddNurses;

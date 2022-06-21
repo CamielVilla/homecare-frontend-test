@@ -1,11 +1,11 @@
 import React from "react";
 import Page from "../../../components/Page/Page";
-import File from "../../../components/patientfile/File";
+import PatientFile from "../../../components/patientfile/PatientFile";
 
 function PatientFile (){
     return (
         <Page>
-            <File />
+            <PatientFile />
         </Page>
     )
 }

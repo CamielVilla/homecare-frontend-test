@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import "./AdminPatients.css";
+import "./AddPatients.css";
 import GetUsers from "../../../components/getfunctions/GetUsers";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
@@ -8,16 +8,13 @@ import {useForm} from "react-hook-form";
 import TextAreaInput from "../../../components/Form/TextAreaInput";
 import Page from "../../../components/Page/Page";
 import axios from "axios";
+import Table from "../../../components/table/Table";
 
 
-function AdminPatients () {
+function AddPatients () {
     const [addSucces, toggleAddSucces] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '500px',
-        height: '400px'
-    };
+
 
 
 
@@ -43,10 +40,16 @@ function AdminPatients () {
     }
     return (
         <Page>
-                <GetUsers
-                    name="Patiënten overzicht"
-                    scrollBarStyle={scrollBarStyle}
-                >
+           <GetUsers
+               name="Patiënten overzicht"
+               toUser="Naar Patiënt"
+               userType="patients"
+               columnOne="Naam"
+               columnTwo="Geboorte datum"
+           >
+
+           </GetUsers>
+
                     <div className="patient-form-container">
                             <Form
                                 handleSubmit={handleSubmit(addPatient)}
@@ -103,8 +106,7 @@ function AdminPatients () {
                                 {addSucces && <h3>Patiënt toegevoegd</h3>}
                             </Form>
                     </div>
-                </GetUsers>
         </Page>
     )
 }
-export default AdminPatients;
+export default AddPatients;

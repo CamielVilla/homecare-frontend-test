@@ -1,25 +1,15 @@
 import React, {useEffect, useState} from "react";
-import "./File.css";
+import "./PatientFile.css";
 import Page from "../Page/Page";
 import Table from "../table/Table";
 import Button from "../Button/Button";
-import RadioInput from "../Form/RadioInput";
-import { useForm } from "react-hook-form";
-import WoundExamination from "../woundExamination/WoundExamination";
-import {NavLink, useHistory} from "react-router-dom";
 import axios from "axios";
-import Nav from "../Nav/Nav";
 import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
-import Form from "../Form/Form";
 
 
 
-function File(){
-    const [, updateState] = useState();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
+function PatientFile(){
     const [woundExaminations, setWoundExaminations] = useState([])
-    const [examination, setExamination] = useState("")
-    const [woundId, setWoundId] = useState("2000")
     const [patientId, setPatientId] = useState("1002")
     const [wounds, setWounds] = useState([])
     const [wound, setWound] = useState("")
@@ -54,13 +44,17 @@ function File(){
                         </div>
                  })}
             </div>
-
             <div className="table-container">
                 <h1> {wound.woundName + " " + wound.woundLocation }</h1>
                 <div className="add-photo-container">
                 <AddWoundPhoto woundId={wound.id}/>
                 </div>
                 <Table className="photo-table">
+                    <tr>
+                        <th>Datum</th>
+                        <th>Foto</th>
+                        <th>Beoordeling</th>
+                    </tr>
                 { woundExaminations &&
                     woundExaminations.map((woundExam, index) => {
                        return <tr key={woundExam.id}>
@@ -80,4 +74,4 @@ function File(){
     )
 }
 
-export default File;
+export default PatientFile;
