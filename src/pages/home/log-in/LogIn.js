@@ -15,17 +15,16 @@ function LogIn () {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
     const history = useHistory();
-    const {logInFunction} = useContext(AuthContext)
+    const {logIn} = useContext(AuthContext)
 
 
     async function checkAuth(e) {
-        console.log(e)
         try {
             const response = await axios.post(`http://localhost:8080/login`, {
                 "email": e.loginEmail,
                 "password": e.loginPassword
             });
-            logInFunction(response.data)
+            logIn(response.data)
         } catch (e) {
             console.error(e)
         }

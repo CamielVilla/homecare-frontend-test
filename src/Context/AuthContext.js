@@ -1,6 +1,7 @@
-import React, {createContext, useState} from "react";
+import React, {createContext, useEffect, useState} from "react";
 import {useHistory} from "react-router-dom";
 import jwtDecode from "jwt-decode";
+import axios from "axios";
 
 export const AuthContext = createContext({})
 
@@ -12,20 +13,47 @@ const [auth, toggleAuth] = useState({
 });
 const history = useHistory();
 
+useEffect(() => {
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if(token){
+        async function getUserData(){
+            const decodedToken = jwtDecode(token);
+            try{
+                const result = await axios.get(`http://localhost:8080/users/${decodedToken.jti}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                console.log(result)
+                toggleAuth( {
+                    isAuth: true,
+                    user: {
+                        email: result.data.email,
+                        id: result.data.id,
+                        role: result.data.role,
+                    }
+                })
+            }catch (e){
+                console.error(e)
+            }
+        }getUserData();
+    }
+}, [])
+
+
 
 function logIn (token){
-    console.log("huts")
-    const decodedToken = jwtDecode(token);
-    console.log(decodedToken)
-    localStorage.setItem("token", token)
+    const decodedToken = jwtDecode(token)
+    localStorage.setItem('token', token);
     toggleAuth({
         isAuth: true,
         user: {
-            name: null,
+            id: decodedToken.jti,
             email: decodedToken.sub,
         }
     })
-    console.log("logged in")
     history.push("/admin")
 }
 
@@ -40,8 +68,8 @@ function logIn (token){
     const data = {
         isAuth: auth.isAuth,
         user: auth.user,
-        logOutFunction: logOut,
-        logInFunction: logIn,
+        logOut: logOut,
+        logIn: logIn,
     }
 
     return (
