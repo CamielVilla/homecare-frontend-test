@@ -92,6 +92,8 @@ useEffect(() => {
                 history.push("/admin")
             }else if(decodedToken.aud === 'NURSE'){
                 history.push("/verpleegkundigen")
+            }else if(decodedToken.aud === 'PATIENT'){
+                history.push("/dosier-overzicht")
             }
         }
     }
