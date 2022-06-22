@@ -19,6 +19,7 @@ function LogIn () {
 
 
     async function checkAuth(e) {
+        console.log(e)
         try {
             const response = await axios.post(`http://localhost:8080/login`, {
                 "email": e.loginEmail,
@@ -44,6 +45,8 @@ function forgetPassword (){
 
     return (
         <Page>
+            <button onClick={checkAuth}>log in</button>
+
                 {/*<button type="button" onClick={logOutFunction}>Uit</button>*/}
                 {/*<button type="button" onClick={setAdminNavBarFunction}>In</button>*/}
                 {/*{loggedIn*/}

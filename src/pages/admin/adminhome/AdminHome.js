@@ -9,12 +9,13 @@ import {AuthContext} from "../../../Context/AuthContext";
 
 function AdminHome(){
     // const {setAdminNavBarFunction, navItems} = useContext(NavContext)
-    const { user: { email} } = useContext(AuthContext)
-
+    const { user  } = useContext(AuthContext)
+    console.log(user)
     return(
 
             <Page>
-                <h1>Welkom {email} </h1>
+                {/*<h1>Welkom {user.id} </h1>*/}
+                {/*<h2>{user.role}</h2>*/}
             </Page>
     )
 }

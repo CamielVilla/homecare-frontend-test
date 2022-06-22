@@ -3,19 +3,21 @@ import {useHistory} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
+
 export const AuthContext = createContext({})
 
-function AuthContextProvider({children}){
+function AuthContextProvider({children}) {
 
-const [auth, toggleAuth] = useState({
-    isAuth: false,
-    user: null
-});
-const history = useHistory();
+    const [auth, toggleAuth] = useState({
+        isAuth: false,
+        user: null,
+        status: "pending",
+    });
+
+    const history = useHistory();
 
 useEffect(() => {
     const token = localStorage.getItem('token');
-    console.log(token)
     if(token){
         async function getUserData(){
             const decodedToken = jwtDecode(token);
@@ -26,41 +28,88 @@ useEffect(() => {
                         Authorization: `Bearer ${token}`,
                     }
                 });
-                console.log(result)
                 toggleAuth( {
                     isAuth: true,
                     user: {
+                        id:result.data.id,
                         email: result.data.email,
-                        id: result.data.id,
                         role: result.data.role,
-                    }
+                    },
+                    status: "done",
                 })
-            }catch (e){
+            }   catch(e) {
+                toggleAuth({
+                    ...auth,
+                    status: 'error',
+                });
+                localStorage.clear();
+                console.error(e);
+            }
+        }
+        getUserData();
+    } else {
+        toggleAuth({
+            ...auth,
+            status: 'done',
+        });
+    }
+}, []);
+
+    function logIn(token) {
+        const decodedToken = jwtDecode(token)
+        console.log(decodedToken);
+        localStorage.setItem('token', token);
+        toggleAuth({
+            isAuth: true,
+            user: {
+                id: decodedToken.jti,
+                role: decodedToken.aud,
+            }
+        })
+
+        getData();
+
+        async function getData() {
+            try {
+                const result = await axios.get(`http://localhost:8080/users/${decodedToken.jti}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                });
+                toggleAuth({
+                    ...auth,
+                    isAuth: true,
+                    status: "done",
+                })
+            } catch (e) {
                 console.error(e)
             }
-        }getUserData();
-    }
-}, [])
-
-
-
-function logIn (token){
-    const decodedToken = jwtDecode(token)
-    localStorage.setItem('token', token);
-    toggleAuth({
-        isAuth: true,
-        user: {
-            id: decodedToken.jti,
-            email: decodedToken.sub,
         }
-    })
-    history.push("/admin")
-}
+
+        if(decodedToken){
+            if    (decodedToken.aud === 'ADMIN'){
+                history.push("/admin")
+            }else if(decodedToken.aud === 'NURSE'){
+                history.push("/verpleegkundigen")
+            }
+        }
+    }
+
+
+
+
+            // getData();
+
+
+
+
 
     function logOut () {
         toggleAuth({
             isAuth: false,
             user: null,
+            status: "done",
         })
         history.push("/home")
         console.log("logged out")
@@ -72,9 +121,10 @@ function logIn (token){
         logIn: logIn,
     }
 
+
     return (
         <AuthContext.Provider value={data}>
-            {children}
+            {auth.status === "done" ? children : <p>Loading...</p>}
         </AuthContext.Provider>
     )
 }
