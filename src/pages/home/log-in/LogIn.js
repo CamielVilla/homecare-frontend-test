@@ -7,7 +7,6 @@ import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
 import {AuthContext} from "../../../Context/AuthContext";
 import Page from "../../../components/Page/Page";
-import {NavContext} from "../../../Context/NavContext";
 import axios from "axios";
 
 
@@ -31,12 +30,7 @@ function LogIn () {
         }
     }
 
-// console.log(e)
-//     logInFunction();
-// }
 
-function handleLogin (){
-}
 
 
 function forgetPassword (){
@@ -45,14 +39,6 @@ function forgetPassword (){
 
     return (
         <Page>
-            <button onClick={checkAuth}>log in</button>
-
-                {/*<button type="button" onClick={logOutFunction}>Uit</button>*/}
-                {/*<button type="button" onClick={setAdminNavBarFunction}>In</button>*/}
-                {/*{loggedIn*/}
-                {/*    ?<p>je bent ingelogd</p>*/}
-                {/*    :<p>je bent uigelogd</p>}*/}
-
                 <div className="login-form-container">
             <Form
                 handleSubmit={handleSubmit(checkAuth)}
@@ -81,7 +67,6 @@ function forgetPassword (){
                 isRequired={true}
                 />
                 <div className="button-container-login">
-
                     <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
                     <Button buttonType="submit">Log in</Button>
                 </div>

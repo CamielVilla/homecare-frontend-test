@@ -1,4 +1,4 @@
-import React, {createContext, useEffect, useState} from "react";
+import React, {createContext, useEffect, useState, useContext} from "react";
 import {useHistory} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
@@ -34,6 +34,7 @@ useEffect(() => {
                         id:result.data.id,
                         email: result.data.email,
                         role: result.data.role,
+                        name: result.data.name
                     },
                     status: "done",
                 })
@@ -80,11 +81,17 @@ useEffect(() => {
                 toggleAuth({
                     ...auth,
                     isAuth: true,
+
+                    user: {
+                        role: result.data.role,
+                        name: result.data.name,
+                        id: result.data.id
+                    },
                     status: "done",
                 })
             } catch (e) {
                 console.error(e)
-            }
+            }  localStorage.clear();
         }
 
         if(decodedToken){
@@ -93,7 +100,7 @@ useEffect(() => {
             }else if(decodedToken.aud === 'NURSE'){
                 history.push("/verpleegkundigen")
             }else if(decodedToken.aud === 'PATIENT'){
-                history.push("/dosier-overzicht")
+                history.push("/dossier-overzicht")
             }
         }
     }
@@ -114,8 +121,10 @@ useEffect(() => {
             status: "done",
         })
         history.push("/home")
+        localStorage.clear();
         console.log("logged out")
     }
+
     const data = {
         isAuth: auth.isAuth,
         user: auth.user,

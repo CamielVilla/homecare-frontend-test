@@ -22,13 +22,14 @@ import AddWoundPhoto from "./pages/Wound/AddWoundPhoto";
 function App() {
   let location = useLocation();
   const [url, setUrl] = useState(location.pathname)
-  const [navItems, setNavItems] = useState( ["home", "login", "contact", "patiënten",
-    "zorgverleners", "berichten", "profiel", "wonden-overzicht", "dossier-overzicht"])
-  const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
-  const nurses= ["home", "profiel", "patiënten-overzicht", "wonden"]
-  const patients= ["home", "dossier-overzicht", "profiel" ]
-  const [user, setUser] = useState(null)
-  const { id } = useParams()
+  // const [navItems, setNavItems] = useState( ["home", "login", "contact"])
+  // const [navItems, setNavItems] = useState( ["home", "login", "contact", "patiënten",
+  //   "zorgverleners", "berichten", "profiel", "wonden-overzicht", "dossier-overzicht"])
+  // const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
+  // const nurses= ["home", "profiel", "patiënten-overzicht", "wonden"]
+  // const patients= ["home", "dossier-overzicht", "profiel" ]
+  // const [user, setUser] = useState(null)
+  // const { id } = useParams()
 
   function getProfile(handle) {
 
@@ -60,7 +61,7 @@ function App() {
 
   return (
       <>
-        <Nav navItems={navItems}/>
+        <Nav />
         <Switch>
           <Route exact path={["/", "/home"]}>
             <HomePage />
