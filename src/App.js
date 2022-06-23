@@ -55,17 +55,14 @@ function App() {
           <Route exact path="/nieuwe-foto's">
             <WoundsToAsses />
           </Route>
-          <Route exact path="/nieuwe-wond">
-            <AddWound />
-          </Route>
           <Route exact path="/wond-foto">
             <AddWoundPhoto />
           </Route>
           <Route exact path="/profiel">
             <ProfilePage />
           </Route>
-          <Route exaxt path="/file">
-
+          <Route exact path="/nieuwe-wond">
+            <AddWound />
           </Route>
 
           {/*<Route path="/profiel/:id" children={<PatientProfile />} />*/}
@@ -73,6 +70,7 @@ function App() {
             <PatientOwnFile />
           </Route>
           <Route path="/:id" children={<NursePatientFile />} />
+
         </Switch>
         {/*{JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
         {/*{location.pathname.includes("profiel") && <img src={nurse} alt="nurse" className="nurse-image" />}*/}

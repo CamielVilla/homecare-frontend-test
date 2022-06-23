@@ -6,7 +6,9 @@ import Button from "../Button/Button";
 import axios from "axios";
 import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 import {AuthContext} from "../../Context/AuthContext";
-import ScrollBar from "react-perfect-scrollbar";
+import {useHistory} from "react-router-dom";
+import {useForm} from "react-hook-form";
+
 
 
 
@@ -19,10 +21,13 @@ function PatientFile({id}){
     const [wound, setWound] = useState("")
     const [patient, setPatient] = useState("")
     const { user: { role }  } = useContext(AuthContext)
+    const history = useHistory();
+    const { register, handleSubmit, formState: { errors} } = useForm();
+    const [assessment, setAssessment] = useState();
+    const token = localStorage.getItem('token')
 
-
+console.log(assessment)
     useEffect( () => {
-        const token = localStorage.getItem('token')
         async function fetchPatientWounds(){
             try {
                 const result = await axios.get(`http://localhost:8080/patients/${id}`, {
@@ -44,29 +49,59 @@ function PatientFile({id}){
         }fetchPatientWounds();
     } , [])
 
+
+        async function addAssessment(id){
+
+            try{
+                const result = await axios.put(`http://localhost:8080/woundexaminations/${id}/assessment`, {
+                    nurseAssessment: assessment,
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
+                console.log(result)
+            }catch (e){
+                console.error(e)
+            }
+        }
+
+
+
     return(
-<Page>
-            <h1>Dossier van {patient}</h1>
-    {!wound.woundName && <h2>Selecteer een wond</h2>}
-            <div className="patient-wound-container">
+        <>
+            <div className="patient-nav">
+                <div className="patient-nav-container">
                     {wounds && wounds.map((wound) => {
                         return <div key={wound.id}><Button  buttonType="button" handleClick={() => {
-                       setWoundExaminations(wound.woundExaminations); setWound(wound);}}
-                   >
-                       {wound.woundName + " " + wound.woundLocation }
-                   </Button>
+                            setWoundExaminations(wound.woundExaminations); setWound(wound);}}
+                        >
+                            {wound.woundName + " " + wound.woundLocation }
+                        </Button>
                         </div>
-                 })}
-            </div>
-    {wound.woundName &&
-        <div className="optional-container">
-            <div className="table-container">
-
-                <h1> {wound.woundName + " " + wound.woundLocation }</h1>
-
-                <div className="add-photo-container">
-                <AddWoundPhoto woundId={wound.id}/>
+                    })}
                 </div>
+            </div>
+
+
+<Page>
+    {role != "PATIENT" &&
+        <Button handleClick={() => history.push("nieuwe-wond")}>Voeg wond toe</Button>
+    }
+            <h1>Dossier van {patient}</h1>
+    {/*{!wound.woundName && <h2>Selecteer een wond</h2>}*/}
+
+            <div className="table-container">
+                {wound.woundName &&
+                <div className="add-photo-container">
+                <h1> {wound.woundName + " " + wound.woundLocation }</h1>
+                    {role === "PATIENT" &&
+                        <AddWoundPhoto woundId={wound.id}/>
+                    }
+                </div>
+                }
+
                 <Table className="photo-table">
                     <tr>
                         <th>Datum</th>
@@ -78,26 +113,40 @@ function PatientFile({id}){
                        return <tr key={woundExam.file.url}>
                                 <td>{woundExam.photoDate}</td>
                                 <td><img src={woundExam.file.url} alt={woundExam.id} /></td>
-                           {role === 'PATIENT'
-                               ?
+                           {role === 'PATIENT' || role === "ADMIN"
+                               &&
                                <td>{woundExam.nurseAssessment}</td>
-                               : <td>
-                                   <button>Voeg beoordeling toe</button>
+                           }
+                           {!woundExam.nurseAssessment ?
+                               <td>
+                                   <form>
+                                       <label htmlFor="nurse-assessment">
+                                       <textarea
+                                           id="nurse-assessment"
+                                           name="nurse-assessment-field"
+                                           cols={40}
+                                           rows={10}
+                                           onChange={(e) => setAssessment(e.target.value)}
+                                       >
+                                       </textarea>
+                                       </label>
+                                       <Button buttonType="submit" handleClick={(e) => {e.preventDefault(); addAssessment(woundExam.id)}}>Voeg beoordeling toe</Button>
+                                   </form>
                                </td>
+                               :<td>{woundExam.nurseAssessment}</td>
                            }
                        </tr>
                     })}
             </Table>
-
-            </div>
-
+                </div>
+    {wound.woundName &&
     <div className="treatment-plan-container">
         <h2>Behandelplan</h2>
         <p>{wound.treatmentPlan}</p>
     </div>
-        </div>
     }
 </Page>
+        </>
     )
 }
 

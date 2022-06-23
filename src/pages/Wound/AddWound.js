@@ -7,14 +7,17 @@ import TextAreaInput from "../../components/Form/TextAreaInput";
 import Button from "../../components/Button/Button";
 import Page from "../../components/Page/Page";
 import axios from "axios";
+import {useParams} from "react-router-dom";
 
 function AddWound() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [addSucces, toggleAddSucces] = useState(false)
+    let id = useParams();
 
+    console.log(id)
     async function addNewWound(e){
        try{
-           const response = await axios.post("http://localhost:8080/admin/1002/addwound", {
+           const response = await axios.post(`http://localhost:8080/admin/${id}/addwound`, {
                woundName: e.patientWound,
                woundLocation: e.patientWoundLocation,
                treatmentPlan: e.woundPlan,
