@@ -1,18 +1,18 @@
 import React, {useContext, useState} from "react";
-import "./GetPatients.css";
-import GetUsers from "../../getfunctions/GetUsers";
-import Form from "../../Form/Form";
-import TextInput from "../../Form/TextInput";
-import Button from "../../Button/Button";
+import "./PatientsOverview.css";
+import GetUsers from "../getfunctions/GetUsers";
+import Form from "../Form/Form";
+import TextInput from "../Form/TextInput";
+import Button from "../Button/Button";
 import {useForm} from "react-hook-form";
-import TextAreaInput from "../../Form/TextAreaInput";
-import Page from "../../Page/Page";
+import TextAreaInput from "../Form/TextAreaInput";
+import Page from "../Page/Page";
 import axios from "axios";
-import Table from "../../table/Table";
-import {AuthContext} from "../../../Context/AuthContext";
+import Table from "../table/Table";
+import {AuthContext} from "../../Context/AuthContext";
 
 
-function GetPatients () {
+function PatientsOverview () {
     const [addSucces, toggleAddSucces] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
@@ -42,9 +42,6 @@ function GetPatients () {
        }
     }
 
-    function addPhoto(){
-        console.log("photo added")
-    }
     return (
         <Page>
            <GetUsers
@@ -53,6 +50,7 @@ function GetPatients () {
                userType="patients"
                columnOne="Naam"
                columnTwo="Geboorte datum"
+               columnThree=""
            >
 
            </GetUsers>
@@ -117,4 +115,4 @@ function GetPatients () {
         </Page>
     )
 }
-export default GetPatients;
+export default PatientsOverview;

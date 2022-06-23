@@ -5,7 +5,7 @@ import Scrollbars from 'react-scrollbar'
 import Table from "../table/Table";
 import {NavLink} from "react-router-dom";
 
-function GetUsers ({name, toUser, userType, columnOne, columnTwo}) {
+function GetUsers ({name, toUser, userType, columnOne, columnTwo, columnThree}) {
 
 const [users, setUsers] = useState([]);
     const scrollBarStyle = {
@@ -39,11 +39,11 @@ useEffect( () => {
                 <div className="scroll-content-container">
 
                 <Scrollbars autoHide={false} style={scrollBarStyle} >
-                    <Table>
+                    <Table className="user-table">
                         <tr>
                             <th>{columnOne}</th>
                             <th>{columnTwo}</th>
-                            <th></th>
+                            <th>{columnThree}</th>
                         </tr>
                     {users.map((user) => {
                         return <tr key={user.id}>
@@ -52,7 +52,10 @@ useEffect( () => {
                                 ?<td>{user.dateOfBirth}</td>
                                 : <td>{user.email}</td>
                             }
-                            <td><NavLink to={`/${user.id}`}>{toUser}</NavLink></td>
+                            {user.role === "PATIENT"
+                                ? <td><NavLink to={`/${user.id}`}>{toUser}</NavLink></td>
+                                : <td>{user.bigNumber}</td>
+                            }
                         </tr>
                     })}
                     </Table>

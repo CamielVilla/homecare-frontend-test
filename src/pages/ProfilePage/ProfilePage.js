@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import "./ProfilePage.css"
 import Form from "../../components/Form/Form";
 import {useForm} from "react-hook-form";
@@ -6,31 +6,20 @@ import TextInput from "../../components/Form/TextInput";
 import Button from "../../components/Button/Button";
 import Page from "../../components/Page/Page";
 import axios from "axios";
+import authContext, {AuthContext} from "../../Context/AuthContext";
 
 function ProfilePage(){
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const [userId, setUserId] = useState("1002");
-    const [role, setRole] = useState("getPatients");
-    const [user, setUser] = useState("");
+    const { user  } = useContext(AuthContext)
     function onFormSubmit (data) {
         console.log(data)
 
     }
 
-    useEffect( () => {
-        async function getUserInfo (){
-            try{ const result = await axios.get(`http://localhost:8080/${role}/${userId}`)
-                console.log(result.data)
-                setUser(result.data)
-            }catch (e) {
-                console.error(e)
-            }
-        }getUserInfo();
-    }, [])
     return(
         <Page>
-            <div className="nurses-home-container">
-                <div className="nurses-info-container">
+            <div className="profile-page">
+                <div className="profile-page-container">
                 <h1>Uw gegevens</h1>
                 <h2>Naam: {user.name}</h2>
                 <h2>Email: {user.email}</h2>
@@ -40,10 +29,10 @@ function ProfilePage(){
                 handleSubmit={onFormSubmit}
                 >
                     <TextInput
-                        htmlFor="patient-old-password"
+                        htmlFor="old-password"
                         type="text"
                         placeholder="Oud wachtwoord"
-                        fieldName="patientOldPassword"
+                        fieldName="oldPassword"
                         register={register}
                         errors={errors}
                         minimLength={3}
@@ -51,10 +40,10 @@ function ProfilePage(){
                         isRequired={true}
                     />
                     <TextInput
-                        htmlFor="patient-new-password"
+                        htmlFor="new-password"
                         type="text"
                         placeholder="Nieuw wachtwoord"
-                        fieldName="patientNewPassword"
+                        fieldName="NewPassword"
                         register={register}
                         errors={errors}
                         minimLength={3}
@@ -62,10 +51,10 @@ function ProfilePage(){
                         isRequired={true}
                     />
                     <TextInput
-                        htmlFor="patient-new-password-confirm"
+                        htmlFor="new-password-confirm"
                         type="text"
                         placeholder="Herhaal nieuw wachtwoord"
-                        fieldName="patientNewPasswordConfirm"
+                        fieldName="newPasswordConfirm"
                         register={register}
                         errors={errors}
                         minimLength={3}
@@ -75,7 +64,6 @@ function ProfilePage(){
                     <div className="button-container-patient-password">
                         <Button buttonType="reset">Reset</Button>
                         <Button buttonType="submit">Wijzig</Button>
-
                     </div>
                 </Form>
             </div>

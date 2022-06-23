@@ -12,9 +12,15 @@ function WoundsToAsses(){
     const [wounds, setWounds] = useState([]);
 
     useEffect( () => {
+        const token = localStorage.getItem('token')
         async function fetchPatients(){
             try {
-                const result = await axios.get("http://localhost:8080/wounds/toassess")
+                const result = await axios.get("http://localhost:8080/wounds/toassess", {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
                 console.log(result.data)
                 setWounds(result.data);
             }catch (e) {
