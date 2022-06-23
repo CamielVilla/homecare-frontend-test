@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import "./GetUsers.css";
 import axios from "axios";
 import Scrollbars from 'react-scrollbar'
-import PersonTile from "../persontile/PersonTile";
 import Table from "../table/Table";
 import {NavLink} from "react-router-dom";
 
@@ -15,10 +14,17 @@ const [users, setUsers] = useState([]);
         height: '400px'
     };
 
+
 useEffect( () => {
+    const token = localStorage.getItem('token');
     async function fetchPatients(){
         try {
-            const result = await axios.get(`http://localhost:8080/${userType}`)
+            const result = await axios.get(`http://localhost:8080/admin/${userType}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            })
             setUsers(result.data);
         }catch (e) {
             console.error(e)

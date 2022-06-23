@@ -5,25 +5,32 @@ import { useForm} from "react-hook-form";
 import {useHistory} from "react-router-dom";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
-import {AuthContext} from "../../../components/Context/AuthContext";
+import {AuthContext} from "../../../Context/AuthContext";
 import Page from "../../../components/Page/Page";
-import {NavContext} from "../../../components/Context/NavContext";
+import axios from "axios";
 
 
 function LogIn () {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
     const history = useHistory();
-    const {loggedIn, logOutFunction, logInFunction} = useContext(AuthContext)
+    const {logIn} = useContext(AuthContext)
 
 
-function onFormSubmit(data){
-console.log(data)
-    logInFunction();
-}
+    async function checkAuth(e) {
+        console.log(e)
+        try {
+            const response = await axios.post(`http://localhost:8080/login`, {
+                "email": e.loginEmail,
+                "password": e.loginPassword
+            });
+            logIn(response.data)
+        } catch (e) {
+            console.error(e)
+        }
+    }
 
-function handleLogin (){
-}
+
 
 
 function forgetPassword (){
@@ -32,15 +39,9 @@ function forgetPassword (){
 
     return (
         <Page>
-                {/*<button type="button" onClick={logOutFunction}>Uit</button>*/}
-                {/*<button type="button" onClick={setAdminNavBarFunction}>In</button>*/}
-                {/*{loggedIn*/}
-                {/*    ?<p>je bent ingelogd</p>*/}
-                {/*    :<p>je bent uigelogd</p>}*/}
-
                 <div className="login-form-container">
             <Form
-                handleSubmit={handleSubmit(onFormSubmit)}
+                handleSubmit={handleSubmit(checkAuth)}
                 title="Log in met uw Homecare gegevens"
             >
                 <TextInput
@@ -66,7 +67,6 @@ function forgetPassword (){
                 isRequired={true}
                 />
                 <div className="button-container-login">
-
                     <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
                     <Button buttonType="submit">Log in</Button>
                 </div>
