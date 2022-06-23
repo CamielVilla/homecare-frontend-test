@@ -10,7 +10,7 @@ import axios from "axios";
 function ProfilePage(){
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [userId, setUserId] = useState("1002");
-    const [role, setRole] = useState("patients");
+    const [role, setRole] = useState("getPatients");
     const [user, setUser] = useState("");
     function onFormSubmit (data) {
         console.log(data)

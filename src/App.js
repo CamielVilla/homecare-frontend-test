@@ -8,7 +8,7 @@ import LogIn from "./pages/home/log-in/LogIn";
 import ContactPage from "./pages/home/contactpage/ContactPage";
 import nurse from "./assets/symbols/nurse.png";
 import AdminHome from "./pages/admin/adminhome/AdminHome";
-import AddPatients from "./pages/admin/addpatients/AddPatients";
+import GetPatients from "./components/getpatients/getPatients/GetPatients";
 import AddNurses from "./pages/admin/addnurses/AddNurses";
 import AdminMessages from "./pages/admin/adminmessages/AdminMessages";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
@@ -27,7 +27,7 @@ function App() {
   //   "zorgverleners", "berichten", "profiel", "wonden-overzicht", "dossier-overzicht"])
   // const admin = ["admin", "zorgverleners", "patiënten", "berichten", "home"]
   // const nurses= ["home", "profiel", "patiënten-overzicht", "wonden"]
-  // const patients= ["home", "dossier-overzicht", "profiel" ]
+  // const getPatients= ["home", "dossier-overzicht", "profiel" ]
   // const [user, setUser] = useState(null)
   // const { id } = useParams()
 
@@ -51,7 +51,7 @@ function App() {
 //     else if (location.pathname.includes("verpleegkundigen")){
 //       setNavItems(nurses)
 //     }else if(location.pathname.includes("patiënten")){
-//       setNavItems(patients)
+//       setNavItems(getPatients)
 //     }
 //   }
 //   setNavBarItems();
@@ -78,8 +78,8 @@ function App() {
           <Route exact path="/zorgverleners">
             <AddNurses />
           </Route>
-          <Route exact path="/patiënten">
-            <AddPatients />
+          <Route exact path={["/patiënten", "/patiënten-overzicht"]}>
+            <GetPatients />
           </Route>
           <Route exaxt path="/berichten">
             <AdminMessages />

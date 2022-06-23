@@ -9,6 +9,7 @@ import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 
 
 function PatientFile(){
+    const token = localStorage.getItem('token')
     const [woundExaminations, setWoundExaminations] = useState([])
     const [patientId, setPatientId] = useState("1002")
     const [wounds, setWounds] = useState([])
@@ -18,7 +19,12 @@ function PatientFile(){
     useEffect( () => {
         async function fetchPatientWounds(){
             try {
-                const result = await axios.get(`http://localhost:8080/patients/${patientId}`)
+                const result = await axios.get(`http://localhost:8080/patients/${patientId}`, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${token}`,
+                    }
+                })
                 console.log(result.data)
                 setWounds(result.data.wounds)
                 setWound(result.data.wounds[0])

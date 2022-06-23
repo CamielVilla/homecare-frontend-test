@@ -43,7 +43,6 @@ useEffect(() => {
                     ...auth,
                     status: 'error',
                 });
-                localStorage.clear();
                 console.error(e);
             }
         }
@@ -91,7 +90,7 @@ useEffect(() => {
                 })
             } catch (e) {
                 console.error(e)
-            }  localStorage.clear();
+            }
         }
 
         if(decodedToken){
@@ -120,9 +119,9 @@ useEffect(() => {
             user: null,
             status: "done",
         })
-        history.push("/home")
+        history.push("/home");
         localStorage.clear();
-        console.log("logged out")
+        console.log("logged out");
     }
 
     const data = {

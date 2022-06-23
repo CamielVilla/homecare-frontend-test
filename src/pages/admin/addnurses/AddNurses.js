@@ -18,15 +18,21 @@ function AddNurses() {
         height: '400px'
     };
 
-    async function addPatient (e) {
+    async function addNurse (e) {
+        const token = localStorage.getItem('token')
         try {
-            const response = await axios.post('http://localhost:8080/admin/addpatient',  {
+            const response = await axios.post('http://localhost:8080/admin/addnurse',  {
                 name: e.nurseName,
                 email: e.nurseEmail,
                 password: e.nursePassword,
                 bigNumber: e.nurseBig,
                 role: "NURSE",
                 enabled: 1,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
             });
             console.log(response.data)
             toggleAddSucces(true)
@@ -46,7 +52,7 @@ function AddNurses() {
 
             <div className="nurses-form-container">
             <Form
-                handleSubmit={handleSubmit(addPatient)}
+                handleSubmit={handleSubmit(addNurse)}
                 title="voeg zorgverlener toe"
             >
                 <TextInput
@@ -97,6 +103,7 @@ function AddNurses() {
                     <Button buttonType="reset">Reset</Button>
                     <Button buttonType="submit">Voeg toe</Button>
                 </div>
+                {addSucces && <h3>Zorgverlener toegevoegd</h3>}
             </Form>
             </div>
         </Page>
