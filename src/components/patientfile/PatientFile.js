@@ -33,6 +33,7 @@ function PatientFile({id}){
     const [addSucces, toggleAddSucces] = useState(false);
     const [assessSucces, toggleAssessSuccess] = useState(false);
 
+    console.log(wound.id)
     function handleImageChange(e) {
         e.preventDefault();
         const uploadedFile = e.target.files[0];
@@ -42,6 +43,17 @@ function PatientFile({id}){
         setFile(uploadedFile);
         setPreviewUrl(URL.createObjectURL(uploadedFile));
     }
+
+
+        async function fetchExamsFromWound(woundId){
+            try {
+                const result = await  axios.get(`http://localhost:8080/wounds/${woundId}/exams`)
+                console.log(result.data);
+                setWoundExaminations(result.data)
+            }catch (e) {
+                console.error(e)
+            }
+        }
 
 
 
@@ -85,9 +97,7 @@ function PatientFile({id}){
             assessmentText.value="";
             console.log(result.data)
             // setWoundExam(result.data)
-            const newExam = result.data
-            setWoundExam(oldExams => [...woundExam, newExam])
-            toggleAssessSuccess(true)
+            setWoundExaminations(result.data)
             // console.log(woundExam)
         }catch (e){
             console.error(e)
@@ -134,7 +144,7 @@ function PatientFile({id}){
                 <div className="patient-nav-container">
                     {wounds && wounds.map((wound) => {
                         return <div key={wound.id}><Button  buttonType="button" handleClick={() => {
-                            setWound(wound); setWoundExaminations(wound.woundExaminations)}}
+                            setWound(wound); fetchExamsFromWound(wound.id)}}
                         >
                             {wound.woundName + " " + wound.woundLocation }
                         </Button>
@@ -186,7 +196,7 @@ function PatientFile({id}){
                         <th>Foto</th>
                         <th>Beoordeling</th>
                     </tr>
-                { woundExaminations &&
+                {
                     woundExaminations.map((woundExam, index) => {
                        return <tr key={woundExam.file.url}>
                                 <td>{woundExam.photoDate}</td>
@@ -195,7 +205,7 @@ function PatientFile({id}){
                                &&
                                <td>{woundExam.nurseAssessment}</td>
                            }
-                           {!assessSucces && role != 'PATIENT' ?
+                           {!woundExam.nurseAssessment && role != 'PATIENT' ?
                                <td>
                                    <form>
                                        <label htmlFor={woundExam.id}>
