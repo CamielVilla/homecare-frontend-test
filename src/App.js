@@ -65,15 +65,10 @@ function App() {
           <Route path="/nieuwe-wond/:id">
             <AddWound />
           </Route>
-          {/*<Route exact path="/nieuwe-wond">*/}
-          {/*  <AddWound />*/}
-          {/*</Route>*/}
-
-          {/*<Route path="/profiel/:id" children={<PatientProfile />} />*/}
-          <Route exact path="/dossier-overzicht">
+          <Route path="/dossier-overzicht/">
             <PatientOwnFile />
           </Route>
-          <Route path="/:id" children={<NursePatientFile />} />
+          <Route path="/:id/" children={<NursePatientFile />} />
 
         </Switch>
         {/*{JSON.stringify(navItems) === JSON.stringify(home) && <img src={nurse} alt="nurse" className="nurse-image" />}*/}
