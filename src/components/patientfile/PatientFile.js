@@ -26,7 +26,6 @@ function PatientFile({id}){
     const [assessment, setAssessment] = useState();
     const token = localStorage.getItem('token')
 
-console.log(assessment)
     useEffect( () => {
         async function fetchPatientWounds(){
             try {
@@ -38,9 +37,12 @@ console.log(assessment)
                 })
                 console.log(result.data)
                 setPatient(result.data.name)
-                setWounds(result.data.wounds)
-                if (wounds.length === 1){
-                    setWoundExaminations(result.data.wounds[0].woundExaminations)
+
+
+                if (wounds.length >= 0){
+                    setWoundExaminations(result.data.wounds[0].woundExaminations);
+                    setWounds(result.data.wounds);
+                    setWound(result.data.wounds[0]);
                 }
 
             }catch (e) {
@@ -67,6 +69,10 @@ console.log(assessment)
             }
         }
 
+        function handleClick(){
+        setWound(wound)
+        }
+
 
 
     return(
@@ -81,23 +87,22 @@ console.log(assessment)
                         </Button>
                         </div>
                     })}
+                    {role != "PATIENT" &&
+                        <button className="add-wound-button" onClick={() => history.push(`/nieuwe-wond/${id}`)}>Voeg wond toe</button>
+                    }
+
                 </div>
             </div>
 
 
 <Page>
-    {role != "PATIENT" &&
-        <Button handleClick={() => history.push("nieuwe-wond")}>Voeg wond toe</Button>
-    }
-            <h1>Dossier van {patient}</h1>
-    {/*{!wound.woundName && <h2>Selecteer een wond</h2>}*/}
-
+       <h1>Dossier van {patient}</h1>
             <div className="table-container">
                 {wound.woundName &&
                 <div className="add-photo-container">
                 <h1> {wound.woundName + " " + wound.woundLocation }</h1>
                     {role === "PATIENT" &&
-                        <AddWoundPhoto woundId={wound.id}/>
+                        <AddWoundPhoto woundId={wound.id}  handleClick={handleClick}/>
                     }
                 </div>
                 }
@@ -117,7 +122,7 @@ console.log(assessment)
                                &&
                                <td>{woundExam.nurseAssessment}</td>
                            }
-                           {!woundExam.nurseAssessment ?
+                           {!woundExam.nurseAssessment && role != 'PATIENT' ?
                                <td>
                                    <form>
                                        <label htmlFor="nurse-assessment">

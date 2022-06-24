@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import {useHistory} from "react-router-dom";
 import "./AddWound.css"
 
-function AddWoundPhoto({woundId}) {
+function AddWoundPhoto({woundId, handleClick}) {
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
     const [previewUrl, setPreviewUrl] = useState("");
@@ -18,7 +18,6 @@ function AddWoundPhoto({woundId}) {
         e.preventDefault();
         const uploadedFile = e.target.files[0];
         console.log(uploadedFile);
-        console.log("bemmm")
         toggleDisabled(false)
         setFile(uploadedFile);
         setPreviewUrl(URL.createObjectURL(uploadedFile));
@@ -65,7 +64,7 @@ function AddWoundPhoto({woundId}) {
                 </label>
                 </div>
             }
-            <Button disabled={disabled} buttonType="submit">Voeg foto toe</Button>
+            <Button disabled={disabled} buttonType="submit" handleClick={handleClick}>Voeg foto toe</Button>
             {addSucces && <h3>Foto toegevoegd</h3>}
         </form>
 

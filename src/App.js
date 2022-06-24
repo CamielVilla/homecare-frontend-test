@@ -22,6 +22,7 @@ import PatientOwnFile from "./pages/patients/patienfile/PatientOwnFile";
 
 
 
+
 function App() {
 
   return (
@@ -61,9 +62,12 @@ function App() {
           <Route exact path="/profiel">
             <ProfilePage />
           </Route>
-          <Route exact path="/nieuwe-wond">
+          <Route path="/nieuwe-wond/:id">
             <AddWound />
           </Route>
+          {/*<Route exact path="/nieuwe-wond">*/}
+          {/*  <AddWound />*/}
+          {/*</Route>*/}
 
           {/*<Route path="/profiel/:id" children={<PatientProfile />} />*/}
           <Route exact path="/dossier-overzicht">

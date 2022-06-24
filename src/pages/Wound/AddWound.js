@@ -12,15 +12,22 @@ import {useParams} from "react-router-dom";
 function AddWound() {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [addSucces, toggleAddSucces] = useState(false)
-    let id = useParams();
+    const { id } = useParams();
 
-    console.log(id)
+
     async function addNewWound(e){
+        const token = localStorage.getItem('token')
        try{
-           const response = await axios.post(`http://localhost:8080/admin/${id}/addwound`, {
+           const response = await axios.post(`http://localhost:8080/admin/addwound/${id}`, {
                woundName: e.patientWound,
                woundLocation: e.patientWoundLocation,
                treatmentPlan: e.woundPlan,
+           }, {
+               headers: {
+                   "Content-Type": "application/json",
+                   Authorization: `Bearer ${token}`,
+               }
+
            })
            console.log(response.data)
            toggleAddSucces(true)

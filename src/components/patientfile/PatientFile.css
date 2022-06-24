@@ -9,7 +9,7 @@
     border-style: groove;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 1200px;
 }
 
@@ -55,6 +55,15 @@
 .table-container button{
     margin-bottom: 20px;
     width: 200px;
+}
+
+.patient-nav-container .add-wound-button{
+    background-color: #344C5B;
+    font-size: 12px;
+    height: 35px;
+    width: 110px;
+    border-radius: 20px;
+
 }
 
 .table-container h1{
