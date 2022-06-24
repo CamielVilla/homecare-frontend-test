@@ -5,7 +5,7 @@ import Button from "../../components/Button/Button";
 import {useHistory} from "react-router-dom";
 import "./AddWound.css"
 
-function AddWoundPhoto({woundId}) {
+function AddWoundPhoto({woundId, handleClick}) {
 
     const {register, handleSubmit, reset, formState: {errors}} = useForm();
     const [previewUrl, setPreviewUrl] = useState("");
@@ -14,15 +14,19 @@ function AddWoundPhoto({woundId}) {
     const [addSucces, toggleAddSucces] = useState(false);
     const history = useHistory();
 
+
+    function refreshPage(woundId){
+        window.location.reload(false);
+    }
     function handleImageChange(e) {
         e.preventDefault();
         const uploadedFile = e.target.files[0];
         console.log(uploadedFile);
-        console.log("bemmm")
         toggleDisabled(false)
         setFile(uploadedFile);
         setPreviewUrl(URL.createObjectURL(uploadedFile));
     }
+
 
 
     async function sendImage(e) {
@@ -39,16 +43,18 @@ function AddWoundPhoto({woundId}) {
                 })
             console.log(result.data);
             toggleAddSucces(true);
-            // reset();
-            // setPreviewUrl("")
-            // setFile([])
+            setPreviewUrl("")
+            toggleDisabled(true)
+            const imageInput = document.getElementById("wound-image");
+            imageInput.value="";
         } catch (e) {
             console.error(e)
         }
     }
 
+
     return (
-        <form title="Voeg foto toe" className="wound-image-container" onSubmit={sendImage} >
+        <form title="Voeg foto toe" className="wound-image-container" id="add-photo" onSubmit={sendImage} >
             <label htmlFor="wound-image" className="wound-image">
                 <input type="file"
                        id="wound-image"
@@ -65,7 +71,7 @@ function AddWoundPhoto({woundId}) {
                 </label>
                 </div>
             }
-            <Button disabled={disabled} buttonType="submit">Voeg foto toe</Button>
+            <Button disabled={disabled} buttonType="submit" handleClick={handleClick}>Voeg foto toe</Button>
             {addSucces && <h3>Foto toegevoegd</h3>}
         </form>
 
@@ -74,14 +80,3 @@ function AddWoundPhoto({woundId}) {
 
 export default AddWoundPhoto;
 
-// async function addComment(comment) {
-//     console.log(comment)
-//     try {
-//         const response = await axios.put("http://localhost:8080/woundexamination/1/comment", {
-//             patientComment: comment
-//         })
-//         console.log(response.data)
-//     } catch (e) {
-//         console.error(e)
-//     }
-// }

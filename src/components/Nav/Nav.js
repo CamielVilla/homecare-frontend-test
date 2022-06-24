@@ -9,7 +9,7 @@ function Nav () {
     const [navItems, setNavItems] = useState(["home", "login", "contact"])
     const home = ["home", "login", "contact"]
     const admin = ["admin", "zorgverleners", "patiënten", "berichten"]
-    const nurses= ["profiel", "patiënten-overzicht"]
+    const nurses= ["nieuwe-foto's", "profiel", "patiënten-overzicht"]
     const patients= ["dossier-overzicht", "profiel"]
 
     useEffect(() => {

@@ -1,3 +1,38 @@
+.patient-nav{
+    border-color: palevioletred;
+
+}
+
+.patient-nav-container{
+    border-style: groove;
+    border-color: yellow;
+    border-style: groove;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 1200px;
+}
+
+.patient-nav-container button{
+    background-color: #188097;
+}
+
+/*.patient-nav-container ul{*/
+/*    background-color: red;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    justify-content: space-around;*/
+/*    align-items: center;*/
+/*    list-style: none;*/
+/*    margin-top: 20px;*/
+/*    width: 1200px;*/
+/*}*/
+
+/*.patient-nav-container li{*/
+/*    background-color: #344C5B;*/
+/*    padding: 10px;*/
+/*    border-radius: 20px;*/
+/*}*/
 
 
 .table-container, .treatment-plan-container{
@@ -20,6 +55,15 @@
 .table-container button{
     margin-bottom: 20px;
     width: 200px;
+}
+
+.patient-nav-container .add-wound-button{
+    background-color: #344C5B;
+    font-size: 12px;
+    height: 35px;
+    width: 110px;
+    border-radius: 20px;
+
 }
 
 .table-container h1{

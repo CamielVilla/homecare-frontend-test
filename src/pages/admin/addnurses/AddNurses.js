@@ -48,6 +48,7 @@ function AddNurses() {
             userType="nurses"
             columnOne="Naam"
             columnTwo="email"
+            columnThree="big nummer"
          />
 
             <div className="nurses-form-container">

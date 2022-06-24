@@ -84,7 +84,8 @@ useEffect(() => {
                     user: {
                         role: result.data.role,
                         name: result.data.name,
-                        id: result.data.id
+                        id: result.data.id,
+                        email: result.data.email,
                     },
                     status: "done",
                 })
@@ -103,12 +104,6 @@ useEffect(() => {
             }
         }
     }
-
-
-
-
-            // getData();
-
 
 
 

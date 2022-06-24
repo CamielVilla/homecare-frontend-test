@@ -1,2 +1,13 @@
+.user-table a, .user-table td {
+    font-size: 20px;
+}
 
+.user-table a{
+    background-color: #29A4B0;
+    border-radius: 20px;
+    padding: 5px;
+}
 
+a:hover{
+
+}
