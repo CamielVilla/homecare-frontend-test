@@ -1,5 +1,5 @@
 import React, {createContext, useEffect, useState, useContext} from "react";
-import {useHistory} from "react-router-dom";
+import {NavLink, useHistory} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
@@ -19,8 +19,8 @@ function AuthContextProvider({children}) {
 useEffect(() => {
     const token = localStorage.getItem('token');
     if(token){
+        const decodedToken = jwtDecode(token);
         async function getUserData(){
-            const decodedToken = jwtDecode(token);
             try{
                 const result = await axios.get(`http://localhost:8080/users/${decodedToken.jti}`, {
                     headers: {
@@ -43,14 +43,15 @@ useEffect(() => {
                     ...auth,
                     status: 'error',
                 });
+                localStorage.clear();
                 console.error(e);
             }
         }
         getUserData();
     } else {
         toggleAuth({
-            ...auth,
-            status: 'done',
+           ...auth,
+            status: "done"
         });
     }
 }, []);
@@ -98,7 +99,7 @@ useEffect(() => {
             if    (decodedToken.aud === 'ADMIN'){
                 history.push("/admin")
             }else if(decodedToken.aud === 'NURSE'){
-                history.push("/verpleegkundigen")
+                history.push(`/nieuwe-foto's`)
             }else if(decodedToken.aud === 'PATIENT'){
                 history.push("/dossier-overzicht")
             }
@@ -129,7 +130,9 @@ useEffect(() => {
 
     return (
         <AuthContext.Provider value={data}>
-            {auth.status === "done" ? children : <p>Loading...</p>}
+            {auth.status === "done" && children}
+            {auth.status === "pending" && <p>Loading...</p>}
+            {auth.status === "error" && <p>Er ging wat mis! Refresh de pagina.. Of klik <NavLink to={"/home"}>hier</NavLink> om terug te gaan naar de home pagina.</p>}
         </AuthContext.Provider>
     )
 }

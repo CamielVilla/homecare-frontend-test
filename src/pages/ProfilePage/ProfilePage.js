@@ -10,10 +10,32 @@ import authContext, {AuthContext} from "../../Context/AuthContext";
 
 function ProfilePage(){
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { user  } = useContext(AuthContext)
-    function onFormSubmit (data) {
-        console.log(data)
+    const { user  } = useContext(AuthContext);
+    const [succes, toggleSucces] = useState(false);
+    async function updatePassword (e) {
+        const token = localStorage.getItem('token')
+        try {
+            const response = await axios.post(`http://localhost:8080/users/${user.id}/password`,  {
+                oldPassword: e.oldPassword,
+                newPassword: e.newPassword,
+                repeatNewPassword: e.newPasswordConfirm,
+            }, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                }
+            });toggleSucces(true);
+                const oldPassword = document.getElementById("old-password");
+                const newPassword = document.getElementById("new-password");
+                const repeatNewPassword = document.getElementById("new-password-confirm")
+                oldPassword.value="";
+                newPassword.value="";
+                repeatNewPassword.value="";
 
+
+        }catch (e) {
+            console.error(e)
+        }
     }
 
     return(
@@ -26,7 +48,7 @@ function ProfilePage(){
                 <h2>Wachtwoord wijzigen:</h2>
                 </div>
                 <Form
-                handleSubmit={onFormSubmit}
+                handleSubmit={handleSubmit(updatePassword)}
                 >
                     <TextInput
                         htmlFor="old-password"
@@ -43,7 +65,7 @@ function ProfilePage(){
                         htmlFor="new-password"
                         type="text"
                         placeholder="Nieuw wachtwoord"
-                        fieldName="NewPassword"
+                        fieldName="newPassword"
                         register={register}
                         errors={errors}
                         minimLength={3}
@@ -65,6 +87,7 @@ function ProfilePage(){
                         <Button buttonType="reset">Reset</Button>
                         <Button buttonType="submit">Wijzig</Button>
                     </div>
+                    {succes && <p>Wachtwoord gewijzigd</p>}
                 </Form>
             </div>
         </Page>
