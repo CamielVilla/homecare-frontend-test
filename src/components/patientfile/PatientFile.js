@@ -84,8 +84,10 @@ function PatientFile({id}){
     }
 
     async function addAssessment(examId){
+        console.log(wound.id)
+        console.log(examId)
         try{
-            const result = await axios.put(`http://localhost:8080/wounds/assessment/${wound.id}/${examId}/`, {
+            const result = await axios.put(`http://localhost:8080/wounds/assessment/${wound.id}/${examId}`, {
                 nurseAssessment: assessment,
             }, {
                 headers: {

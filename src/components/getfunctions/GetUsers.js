@@ -1,18 +1,12 @@
 import React, {useEffect, useState} from "react";
 import "./GetUsers.css";
 import axios from "axios";
-import Scrollbars from 'react-scrollbar'
 import Table from "../table/Table";
 import {NavLink} from "react-router-dom";
 
 function GetUsers ({name, toUser, userType, columnOne, columnTwo, columnThree}) {
 
 const [users, setUsers] = useState([]);
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '1200px',
-        height: '400px'
-    };
 
 
 useEffect( () => {
@@ -37,8 +31,6 @@ useEffect( () => {
         <div className="user-container">
                 <h1>{name}</h1>
                 <div className="scroll-content-container">
-
-                <Scrollbars autoHide={false} style={scrollBarStyle} >
                     <Table className="user-table">
                         <tr>
                             <th>{columnOne}</th>
@@ -59,7 +51,6 @@ useEffect( () => {
                         </tr>
                     })}
                     </Table>
-                </Scrollbars>
                 </div>
                 </div>
 
