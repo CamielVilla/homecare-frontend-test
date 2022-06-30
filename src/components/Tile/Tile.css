@@ -1,6 +1,4 @@
 .tile-container > div {
-    border-color: palevioletred;
-    border-style: groove;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

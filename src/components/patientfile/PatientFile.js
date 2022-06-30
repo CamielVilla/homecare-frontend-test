@@ -4,11 +4,8 @@ import Page from "../Page/Page";
 import Table from "../table/Table";
 import Button from "../Button/Button";
 import axios from "axios";
-import AddWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 import {AuthContext} from "../../Context/AuthContext";
 import {useHistory} from "react-router-dom";
-import {useForm} from "react-hook-form";
-import addWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 
 
 
@@ -19,7 +16,6 @@ import addWoundPhoto from "../../pages/Wound/AddWoundPhoto";
 function PatientFile({id}){
 
     const [woundExaminations, setWoundExaminations] = useState([])
-    const [woundExam, setWoundExam] = useState([]);
     const [wounds, setWounds] = useState([])
     const [wound, setWound] = useState("")
     const [patient, setPatient] = useState("")
@@ -31,13 +27,11 @@ function PatientFile({id}){
     const [file, setFile] = useState([]);
     const [disabled, toggleDisabled] = useState(true);
     const [addSucces, toggleAddSucces] = useState(false);
-    const [assessSucces, toggleAssessSuccess] = useState(false);
 
-    console.log(wound.id)
+
     function handleImageChange(e) {
         e.preventDefault();
         const uploadedFile = e.target.files[0];
-        console.log(uploadedFile);
         toggleAddSucces(false)
         toggleDisabled(false)
         setFile(uploadedFile);
@@ -48,7 +42,6 @@ function PatientFile({id}){
         async function fetchExamsFromWound(woundId){
             try {
                 const result = await  axios.get(`http://localhost:8080/wounds/${woundId}/exams`)
-                console.log(result.data);
                 setWoundExaminations(result.data)
             }catch (e) {
                 console.error(e)
@@ -70,7 +63,6 @@ function PatientFile({id}){
                         Authorization: `Bearer ${token}`,
                     }
                 })
-            console.log(result.data);
             toggleAddSucces(true);
             setPreviewUrl("")
             toggleDisabled(true)
@@ -84,8 +76,6 @@ function PatientFile({id}){
     }
 
     async function addAssessment(examId){
-        console.log(wound.id)
-        console.log(examId)
         try{
             const result = await axios.put(`http://localhost:8080/wounds/assessment/${wound.id}/${examId}`, {
                 nurseAssessment: assessment,
@@ -97,16 +87,11 @@ function PatientFile({id}){
             })
             const assessmentText = document.getElementById(examId)
             assessmentText.value="";
-            console.log(result.data)
-            // setWoundExam(result.data)
             setWoundExaminations(result.data)
-            // console.log(woundExam)
         }catch (e){
             console.error(e)
         }
     }
-
-
 
 
 
@@ -119,7 +104,6 @@ function PatientFile({id}){
                         Authorization: `Bearer ${token}`,
                     }
                 })
-                console.log(result.data)
                 setPatient(result.data.name)
                 if (wounds.length >= 0){
                     setWounds(result.data.wounds);
@@ -130,7 +114,6 @@ function PatientFile({id}){
             }
         }fetchPatientWounds();
     } ,[] )
-
 
 
 
@@ -152,22 +135,17 @@ function PatientFile({id}){
                         </Button>
                         </div>
                     })}
-
                     {role != "PATIENT" &&
                         <button className="add-wound-button" onClick={() => history.push(`/nieuwe-wond/${id}`)}>Voeg wond toe</button>
                     }
                 </div>
             </div>
-
-
 <Page>
 
             <div className="table-container">
                 {wound.woundName &&
                 <div className="add-photo-container">
                 <h1> {wound.woundName + " " + wound.woundLocation }</h1>
-
-
                     {role === "PATIENT" &&
                         <form title="Voeg foto toe" className="wound-image-container" id="add-photo"
                               onSubmit={sendImage}>
@@ -218,8 +196,6 @@ function PatientFile({id}){
                                            rows={10}
                                            onChange={(e) => setAssessment(e.target.value)}
                                        >
-
-
                                        </textarea>
                                        </label>
                                        <Button buttonType="submit" handleClick={(e) => {e.preventDefault(); addAssessment(woundExam.id)}}>Voeg beoordeling toe</Button>

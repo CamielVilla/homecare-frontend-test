@@ -12,11 +12,6 @@ import axios from "axios";
 function AddNurses() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [addSucces, toggleAddSucces] = useState(false)
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '500px',
-        height: '400px'
-    };
 
     async function addNurse (e) {
         const token = localStorage.getItem('token')
@@ -34,8 +29,15 @@ function AddNurses() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(response.data)
             toggleAddSucces(true)
+            const nameField = document.getElementById("nurse-name")
+            const emailField = document.getElementById("nurse-email")
+            const passWordField = document.getElementById("nurse-password")
+            const bigField = document.getElementById("nurse-big")
+            nameField.value = ""
+            emailField.value = ""
+            passWordField.value = ""
+            bigField.value = ""
         }catch (e) {
             console.error(e)
         }
@@ -79,13 +81,13 @@ function AddNurses() {
                     isRequired={true}
                 />
                 <TextInput
-                    htmlFor="nurse-password"
+                    htmlFor="nurse-password"n
                     type="text"
                     placeholder="Wachtwoord"
                     fieldName="nursePassword"
                     register={register}
                     errors={errors}
-                    minimLength={3}
+                    minimLength={6}
                     maximLength={50}
                     isRequired={true}
                 />
@@ -104,7 +106,7 @@ function AddNurses() {
                     <Button buttonType="reset">Reset</Button>
                     <Button buttonType="submit">Voeg toe</Button>
                 </div>
-                {addSucces && <h3>Zorgverlener toegevoegd</h3>}
+                {addSucces && <h3>Zorgverlener toegevoegd. Refresh de pagina om de zorgverlener in het overzicht te zien.</h3>}
             </Form>
             </div>
         </Page>

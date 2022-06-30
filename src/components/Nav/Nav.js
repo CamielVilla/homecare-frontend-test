@@ -6,9 +6,9 @@ import {AuthContext} from "../../Context/AuthContext";
 function Nav () {
 
     const { logOut, user } = useContext(AuthContext)
-    const [navItems, setNavItems] = useState(["home", "login", "contact"])
-    const home = ["home", "login", "contact"]
-    const admin = ["admin", "zorgverleners", "patiënten", "berichten"]
+    const [navItems, setNavItems] = useState(["home", "login"])
+    const home = ["home", "login"]
+    const admin = ["admin", "zorgverleners", "patiënten"]
     const nurses= ["nieuwe-foto's", "profiel", "patiënten-overzicht"]
     const patients= ["dossier-overzicht", "profiel"]
 
@@ -22,9 +22,6 @@ function Nav () {
                    setNavItems(patients)
                }
            }
-
-        console.log(navItems)
-
     },[])
     return (
         <nav className="nav">

@@ -1,6 +1,5 @@
 .homepage, .page  {
-    border-color: gold;
-    border-style: groove;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,8 +10,6 @@
 
 .homepage-container, .contact-container,  .contact-page-container,
 .login-page-container, .page-container {
-    border-color: black;
-    border-style: groove;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -25,5 +22,4 @@
     position: relative;
     height: 1000px;
     padding-top: 50px;
-    /*z-index: 4;*/
 }

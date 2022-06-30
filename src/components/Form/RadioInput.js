@@ -1,6 +1,5 @@
 import React from "react";
 import "./Form.css";
-import Form from "./Form";
 
 function RadioInput({htmlFor, woundName, checked, onChange}) {
     return (

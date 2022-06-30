@@ -1,21 +1,20 @@
 import React, {useContext, useState} from "react";
-import "./PatientsOverview.css";
-import GetUsers from "../getfunctions/GetUsers";
-import Form from "../Form/Form";
-import TextInput from "../Form/TextInput";
-import Button from "../Button/Button";
+import "./AddPatients.css";
+import GetUsers from "../../../components/getfunctions/GetUsers";
+import Form from "../../../components/Form/Form";
+import TextInput from "../../../components/Form/TextInput";
+import Button from "../../../components/Button/Button";
 import {useForm} from "react-hook-form";
-import TextAreaInput from "../Form/TextAreaInput";
-import Page from "../Page/Page";
+import Page from "../../../components/Page/Page";
 import axios from "axios";
-import Table from "../table/Table";
-import {AuthContext} from "../../Context/AuthContext";
+import {AuthContext} from "../../../Context/AuthContext";
 
 
-function PatientsOverview () {
+function AddPatients () {
     const [addSucces, toggleAddSucces] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { user } = useContext(AuthContext);
+    const [patients, setPatients] = useState("")
 
 
 
@@ -35,12 +34,21 @@ function PatientsOverview () {
                    Authorization: `Bearer ${token}`,
                }
            })
-           console.log(response.data)
+
+           const nameField = document.getElementById("patient-name")
+           const emailField = document.getElementById("patient-email")
+           const passWordField = document.getElementById("patient-password")
+           const dobField = document.getElementById("patient-dob")
+           nameField.value = ""
+           emailField.value = ""
+           passWordField.value = ""
+           dobField.value = ""
            toggleAddSucces(true)
        }catch (e) {
            console.error(e)
        }
     }
+
 
     return (
         <Page>
@@ -52,7 +60,6 @@ function PatientsOverview () {
                columnTwo="Geboorte datum"
                columnThree=""
            >
-
            </GetUsers>
             {user.role === "ADMIN" &&
                 <div className="patient-form-container">
@@ -108,11 +115,11 @@ function PatientsOverview () {
                             <Button buttonType="reset">Reset</Button>
                             <Button buttonType="submit">Voeg toe</Button>
                         </div>
-                        {addSucces && <h3>Patiënt toegevoegd</h3>}
+                        {addSucces && <h3>Patiënt toegevoegd. Refresh de pagina om de patiënt in het overzicht te zien.</h3>}
                     </Form>
                 </div>
             }
         </Page>
     )
 }
-export default PatientsOverview;
+export default AddPatients;

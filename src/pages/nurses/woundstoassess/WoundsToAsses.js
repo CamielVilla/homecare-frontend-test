@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
 import "./WoundsToAssess.css";
 import Page from "../../../components/Page/Page";
-import Form from "../../../components/Form/Form";
-import GetUsers from "../../../components/getfunctions/GetUsers";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
 import Table from "../../../components/table/Table";
-import Button from "../../../components/Button/Button";
+
 
 function WoundsToAsses(){
     const [wounds, setWounds] = useState([]);
@@ -30,15 +28,10 @@ function WoundsToAsses(){
     } , [])
 
 
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '500px',
-        height: '800px'
-    };
     return(
         <Page>
-            {wounds.length > 0 ?
-                 <Table className="wounds-to-assess">
+            {wounds.length > 0
+                ? <Table className="wounds-to-assess">
                     <tr>
                         <th>Naam</th>
                         <th>Geboorte datum</th>
@@ -55,8 +48,6 @@ function WoundsToAsses(){
                      })}
                 </Table>
             : <h2>Geen foto's om te beoordelen</h2>}
-
-
         </Page>
     )
 }

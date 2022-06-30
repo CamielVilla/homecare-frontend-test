@@ -1,8 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {useForm} from "react-hook-form";
 import Button from "../../components/Button/Button";
-import {useHistory} from "react-router-dom";
 import "./AddWound.css"
 
 function AddWoundPhoto({woundId, handleClick}) {
@@ -12,7 +11,6 @@ function AddWoundPhoto({woundId, handleClick}) {
     const [file, setFile] = useState([]);
     const [disabled, toggleDisabled] = useState(true);
     const [addSucces, toggleAddSucces] = useState(false);
-    const history = useHistory();
 
 
     function refreshPage(woundId){
@@ -21,7 +19,6 @@ function AddWoundPhoto({woundId, handleClick}) {
     function handleImageChange(e) {
         e.preventDefault();
         const uploadedFile = e.target.files[0];
-        console.log(uploadedFile);
         toggleDisabled(false)
         setFile(uploadedFile);
         setPreviewUrl(URL.createObjectURL(uploadedFile));
@@ -41,7 +38,6 @@ function AddWoundPhoto({woundId, handleClick}) {
                         "Content-Type": "multipart/form-data"
                     }
                 })
-            console.log(result.data);
             toggleAddSucces(true);
             setPreviewUrl("")
             toggleDisabled(true)

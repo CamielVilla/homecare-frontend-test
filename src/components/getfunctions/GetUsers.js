@@ -20,6 +20,7 @@ useEffect( () => {
                 }
             })
             setUsers(result.data);
+
         }catch (e) {
             console.error(e)
         }

@@ -1,8 +1,6 @@
 import React from "react";
 import './Tile.css'
-import person from "../../assets/symbols/person.png";
-import Button from "../Button/Button";
-import {useHistory} from "react-router-dom";
+
 
 function Tile ({image, children, title, text}) {
 

@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 import "./ProfilePage.css"
 import Form from "../../components/Form/Form";
 import {useForm} from "react-hook-form";
@@ -6,7 +6,7 @@ import TextInput from "../../components/Form/TextInput";
 import Button from "../../components/Button/Button";
 import Page from "../../components/Page/Page";
 import axios from "axios";
-import authContext, {AuthContext} from "../../Context/AuthContext";
+import  {AuthContext} from "../../Context/AuthContext";
 
 function ProfilePage(){
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -57,7 +57,7 @@ function ProfilePage(){
                         fieldName="oldPassword"
                         register={register}
                         errors={errors}
-                        minimLength={3}
+                        minimLength={6}
                         maximLength={50}
                         isRequired={true}
                     />
@@ -68,7 +68,7 @@ function ProfilePage(){
                         fieldName="newPassword"
                         register={register}
                         errors={errors}
-                        minimLength={3}
+                        minimLength={6}
                         maximLength={50}
                         isRequired={true}
                     />
@@ -79,7 +79,7 @@ function ProfilePage(){
                         fieldName="newPasswordConfirm"
                         register={register}
                         errors={errors}
-                        minimLength={3}
+                        minimLength={6}
                         maximLength={50}
                         isRequired={true}
                     />

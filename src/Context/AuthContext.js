@@ -1,5 +1,5 @@
-import React, {createContext, useEffect, useState, useContext} from "react";
-import {NavLink, useHistory} from "react-router-dom";
+import React, {createContext, useEffect, useState} from "react";
+import {useHistory} from "react-router-dom";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 
@@ -58,7 +58,6 @@ useEffect(() => {
 
     function logIn(token) {
         const decodedToken = jwtDecode(token)
-        console.log(decodedToken);
         localStorage.setItem('token', token);
         toggleAuth({
             isAuth: true,
@@ -107,8 +106,6 @@ useEffect(() => {
     }
 
 
-
-
     function logOut () {
         toggleAuth({
             isAuth: false,
@@ -117,7 +114,6 @@ useEffect(() => {
         })
         history.push("/home");
         localStorage.clear();
-        console.log("logged out");
     }
 
     const data = {

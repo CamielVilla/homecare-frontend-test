@@ -1,14 +1,10 @@
 .nav{
-   border-color: palevioletred;
-    border-style: groove;
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
 
 .nav-container{
-    border-style: groove;
-    border-color: yellow;
     flex-basis: 1200px;
     justify-content: space-between;
 }
