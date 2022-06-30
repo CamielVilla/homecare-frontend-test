@@ -29,7 +29,6 @@ function AddWound() {
                }
 
            })
-           console.log(response.data)
            toggleAddSucces(true)
            reset()
        }catch (e){
@@ -65,13 +64,6 @@ function AddWound() {
                 maximLength={50}
                 isRequired={true}
             />
-            {/*<TextInput*/}
-            {/*    htmlFor="wound-image"*/}
-            {/*    type="file"*/}
-            {/*    register={register}*/}
-            {/*    errors={errors}*/}
-            {/*    isRequired={true}*/}
-            {/*/>*/}
 
 
             <TextAreaInput
@@ -86,8 +78,6 @@ function AddWound() {
                 cols={40}
                 rows={30}
             />
-
-
             <div className="button-container">
                 <Button buttonType="reset">Reset</Button>
                 <Button buttonType="submit">Voeg toe</Button>

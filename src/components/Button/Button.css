@@ -13,7 +13,7 @@
     width: 200px;
 }
 
-.button-container-login, .button-container-contact, .button-container-admin-nurses,
+.button-container-contact, .button-container-admin-nurses,
 .button-container-admin-patients, .button-container-patient-password, .button-container{
     border-style: groove;
     border-color: #344C5B;

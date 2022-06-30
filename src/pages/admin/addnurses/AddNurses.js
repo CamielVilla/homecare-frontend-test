@@ -12,11 +12,6 @@ import axios from "axios";
 function AddNurses() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [addSucces, toggleAddSucces] = useState(false)
-    const scrollBarStyle = {
-        border: '1px solid red',
-        width: '500px',
-        height: '400px'
-    };
 
     async function addNurse (e) {
         const token = localStorage.getItem('token')
@@ -79,13 +74,13 @@ function AddNurses() {
                     isRequired={true}
                 />
                 <TextInput
-                    htmlFor="nurse-password"
+                    htmlFor="nurse-password"n
                     type="text"
                     placeholder="Wachtwoord"
                     fieldName="nursePassword"
                     register={register}
                     errors={errors}
-                    minimLength={3}
+                    minimLength={6}
                     maximLength={50}
                     isRequired={true}
                 />

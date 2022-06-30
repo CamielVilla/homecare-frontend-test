@@ -25,13 +25,6 @@
 }
 
 
-
-/*.radio-container input {*/
-/*    position: absolute;*/
-/*    opacity: 0;*/
-/*    cursor: pointer;*/
-/*}*/
-
 .radio-container input{
 width: 10px;
 }

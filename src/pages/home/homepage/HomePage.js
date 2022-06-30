@@ -3,10 +3,9 @@ import './HomePage.css';
 import Header from "../../../components/Header/Header";
 import Tile from "../../../components/Tile/Tile";
 import person from "../../../assets/symbols/person.png";
-import envelope from "../../../assets/symbols/envelope.png";
+import nurse from "../../../assets/symbols/nurse.png";
 import {useHistory} from "react-router-dom";
 import Button from "../../../components/Button/Button";
-import Page from "../../../components/Page/Page";
 
 
 function Homepage(){
@@ -16,9 +15,6 @@ function Homepage(){
         history.push("/login");
     }
 
-    function handleClickContact(){
-        history.push("/contact")
-    }
     return (
         <>
             <header className="homepage">
@@ -32,16 +28,10 @@ function Homepage(){
                     ><Button  buttonType="button" handleClick={handleClickLogIn}>
                         Naar inloggen
                     </Button> </Tile>
-                    <Tile
-                        image={envelope}
-                        title="contact"
-                        text="neemt contact op via het contactformulier"
-                    ><Button  buttonType="button" handleClick={handleClickContact}>
-                        Naar het contactformulier
-                    </Button> </Tile>
                 </div>
             </div>
         </header>
+            <img src={nurse} alt="nurse-image" className="nurse-image"/>
         </>
     )
 }

@@ -66,11 +66,6 @@
     height: 200px;
     border-style: groove;
     border-color: red;
-
-}
-
-
-.examine-container{
 }
 
 .patient-wound-container button {
@@ -101,16 +96,3 @@ input[type="file"] {
     margin-top: 20px;
     margin-bottom: 50px;
 }
-
-/*.input-button{*/
-/*    border: 1px solid #ccc;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    justify-content: center;*/
-/*    padding: 10px 12px;*/
-/*    cursor: pointer;*/
-/*    width: 200px;*/
-/*    font-size: 12px;*/
-/*    background-color: #344C5B;*/
-/*}*/
-

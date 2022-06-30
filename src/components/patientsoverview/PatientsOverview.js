@@ -5,10 +5,8 @@ import Form from "../Form/Form";
 import TextInput from "../Form/TextInput";
 import Button from "../Button/Button";
 import {useForm} from "react-hook-form";
-import TextAreaInput from "../Form/TextAreaInput";
 import Page from "../Page/Page";
 import axios from "axios";
-import Table from "../table/Table";
 import {AuthContext} from "../../Context/AuthContext";
 
 
@@ -35,7 +33,6 @@ function PatientsOverview () {
                    Authorization: `Bearer ${token}`,
                }
            })
-           console.log(response.data)
            toggleAddSucces(true)
        }catch (e) {
            console.error(e)

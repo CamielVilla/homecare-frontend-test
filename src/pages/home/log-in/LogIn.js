@@ -2,7 +2,6 @@ import React, {useContext} from "react";
 import './Log-in.css';
 import Button from "../../../components/Button/Button";
 import { useForm} from "react-hook-form";
-import {useHistory} from "react-router-dom";
 import Form from "../../../components/Form/Form";
 import TextInput from "../../../components/Form/TextInput";
 import {AuthContext} from "../../../Context/AuthContext";
@@ -13,12 +12,10 @@ import axios from "axios";
 function LogIn () {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const history = useHistory();
     const {logIn} = useContext(AuthContext)
 
 
     async function checkAuth(e) {
-        console.log(e)
         try {
             const response = await axios.post(`http://localhost:8080/login`, {
                 "email": e.loginEmail,
@@ -30,12 +27,6 @@ function LogIn () {
         }
     }
 
-
-
-
-function forgetPassword (){
-    history.push("/contact")
-}
 
     return (
         <Page>
@@ -67,7 +58,6 @@ function forgetPassword (){
                 isRequired={true}
                 />
                 <div className="button-container-login">
-                    <Button buttonType="button" handleClick={forgetPassword}>Wachtwoord vergeten</Button>
                     <Button buttonType="submit">Log in</Button>
                 </div>
             </Form>
