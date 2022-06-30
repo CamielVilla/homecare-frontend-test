@@ -132,7 +132,7 @@ useEffect(() => {
         <AuthContext.Provider value={data}>
             {auth.status === "done" && children}
             {auth.status === "pending" && <p>Loading...</p>}
-            {auth.status === "error" && <p>Er ging wat mis! Refresh de pagina.. Of klik <NavLink to={"/home"}>hier</NavLink> om terug te gaan naar de home pagina.</p>}
+            {auth.status === "error" && <p>Er ging wat mis! Refresh de pagina..</p>}
         </AuthContext.Provider>
     )
 }

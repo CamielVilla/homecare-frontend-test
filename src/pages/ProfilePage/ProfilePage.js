@@ -15,7 +15,7 @@ function ProfilePage(){
     async function updatePassword (e) {
         const token = localStorage.getItem('token')
         try {
-            const response = await axios.post(`http://localhost:8080/users/${user.id}/password`,  {
+            const response = await axios.put(`http://localhost:8080/users/${user.id}/password`,  {
                 oldPassword: e.oldPassword,
                 newPassword: e.newPassword,
                 repeatNewPassword: e.newPasswordConfirm,
