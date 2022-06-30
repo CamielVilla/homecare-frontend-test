@@ -1,8 +1,6 @@
 
 
 .form-container{
-    border-color: yellow;
-    border-style: groove;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -16,8 +14,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-style: groove;
-    border-color: red;
 }
 
 .form-container input, .form-container textarea {

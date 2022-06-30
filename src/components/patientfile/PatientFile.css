@@ -4,9 +4,6 @@
 }
 
 .patient-nav-container{
-    border-style: groove;
-    border-color: yellow;
-    border-style: groove;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -23,8 +20,6 @@
     align-self: flex-start;
     display: flex;
     flex-direction: column;
-    border-color: red;
-    border-style: groove;
     padding: 50px 0px;
 }
 
@@ -64,21 +59,12 @@
 
 .photo-table img{
     height: 200px;
-    border-style: groove;
-    border-color: red;
 }
 
 .patient-wound-container button {
     width: 200px;
 }
 
-.examine-container{
-
-}
- input {
-    border-color: red;
-    border-style: groove;
-}
 
 input[type="file"] {
     background-color: #188097;
@@ -89,8 +75,6 @@ input[type="file"] {
 .add-photo-container{
     display: flex;
     flex-direction: column;
-    border-color: red;
-    border-style: groove;
 }
 .wound-image{
     margin-top: 20px;

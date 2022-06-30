@@ -6,7 +6,7 @@ import Nav from "./components/Nav/Nav";
 import HomePage from "./pages/home/homepage/HomePage";
 import LogIn from "./pages/home/log-in/LogIn";
 import AdminHome from "./pages/admin/adminhome/AdminHome";
-import PatientsOverview from "./components/patientsoverview/PatientsOverview";
+import AddPatients from "./pages/admin/addpatients/AddPatients";
 import AddNurses from "./pages/admin/addnurses/AddNurses";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import WoundsToAsses from "./pages/nurses/woundstoassess/WoundsToAsses";
@@ -38,7 +38,7 @@ function App() {
             <AddNurses />
           </Route>
           <Route exact path={["/patiënten", "/patiënten-overzicht"]}>
-            <PatientsOverview />
+            <AddPatients />
           </Route>
           <Route exact path={"/verpleegkundigen"}>
             <ProfilePage />

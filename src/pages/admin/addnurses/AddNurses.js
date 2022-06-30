@@ -29,8 +29,15 @@ function AddNurses() {
                     Authorization: `Bearer ${token}`,
                 }
             });
-            console.log(response.data)
             toggleAddSucces(true)
+            const nameField = document.getElementById("nurse-name")
+            const emailField = document.getElementById("nurse-email")
+            const passWordField = document.getElementById("nurse-password")
+            const bigField = document.getElementById("nurse-big")
+            nameField.value = ""
+            emailField.value = ""
+            passWordField.value = ""
+            bigField.value = ""
         }catch (e) {
             console.error(e)
         }
@@ -99,7 +106,7 @@ function AddNurses() {
                     <Button buttonType="reset">Reset</Button>
                     <Button buttonType="submit">Voeg toe</Button>
                 </div>
-                {addSucces && <h3>Zorgverlener toegevoegd</h3>}
+                {addSucces && <h3>Zorgverlener toegevoegd. Refresh de pagina om de zorgverlener in het overzicht te zien.</h3>}
             </Form>
             </div>
         </Page>

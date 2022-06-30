@@ -15,8 +15,6 @@
 
 .button-container-contact, .button-container-admin-nurses,
 .button-container-admin-patients, .button-container-patient-password, .button-container{
-    border-style: groove;
-    border-color: #344C5B;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

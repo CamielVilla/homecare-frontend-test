@@ -1,8 +1,6 @@
 .slogan {
     margin-top: 150px;
     align-self: flex-start;
-    border-color: black;
-    border-style: groove;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -12,7 +10,6 @@
 }
 
 .text-container {
-    border-style: groove;
     flex-basis: 400px;
     text-align: center;
 }
