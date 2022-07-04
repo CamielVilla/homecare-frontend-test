@@ -111,8 +111,6 @@ function PatientFile({id}){
     } ,[] )
 
 
-
-
     return(
         <>
             {role === "PATIENT" ?
