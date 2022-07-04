@@ -8,11 +8,6 @@ import {AuthContext} from "../../Context/AuthContext";
 import {useHistory} from "react-router-dom";
 
 
-
-
-
-
-
 function PatientFile({id}){
 
     const [woundExaminations, setWoundExaminations] = useState([])
